@@ -1,0 +1,104 @@
+package com.tilldawn.View.menu;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.tilldawn.Control.menu.TalentMenuController;
+import com.tilldawn.Control.menu.PauseMenuController;
+
+public class PauseMenuView implements Screen {
+
+    private Stage stage;
+    private final PauseMenuController controller;
+    private final TalentMenuController talentController;
+    private final Skin skin;
+    private final Table table;
+    private final TextButton continueButton;
+    private final TextButton giveUpButton;
+    private final Label cheatCodesLabel;
+    private final Label abilitiesLabel;
+
+    public PauseMenuView(PauseMenuController controller, TalentMenuController talentController, Skin skin) {
+        this.controller = controller;
+        this.talentController = talentController;
+        this.skin = skin;
+
+        this.table = new Table();
+        this.continueButton = new TextButton("Continue", skin);
+        this.giveUpButton = new TextButton("Give Up", skin);
+        this.cheatCodesLabel = new Label(talentController.getCheatCodes(), skin);
+        this.abilitiesLabel = new Label(talentController.getAbilitiesDescription(), skin);
+
+        controller.setView(this);
+    }
+
+    @Override
+    public void show() {
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+
+        Image bg = new Image(new Texture("blueBack.png"));
+        bg.setFillParent(true);
+        stage.addActor(bg);
+
+        ScrollPane.ScrollPaneStyle scrollStyle = new ScrollPane.ScrollPaneStyle();
+        ScrollPane scrollPane;
+
+        Table contentTable = new Table(skin);
+        contentTable.defaults().left().pad(10).width(800);
+
+        // Section: Cheat Codes
+        contentTable.add(new Label("Cheat Codes", skin, "title")).row();
+        cheatCodesLabel.setWrap(true);
+        contentTable.add(cheatCodesLabel).row();
+
+        // Section: Achieved Abilities
+        contentTable.add(new Label("Achieved Abilities", skin, "title")).row();
+        abilitiesLabel.setWrap(true);
+        contentTable.add(abilitiesLabel).row();
+
+        scrollPane = new ScrollPane(contentTable, skin);
+        scrollPane.setScrollingDisabled(true, false);
+        scrollPane.setFadeScrollBars(false);
+
+        table.setFillParent(true);
+        table.top().padTop(30);
+        table.add(new Label("Paused", skin, "title")).padBottom(20).row();
+        table.add(scrollPane).expandY().fill().padBottom(20).row();
+
+        Table buttonRow = new Table();
+        buttonRow.add(continueButton).width(250).padRight(20);
+        buttonRow.add(giveUpButton).width(250);
+        table.add(buttonRow).padBottom(20).row();
+
+        continueButton.addListener(e -> {
+            if (!continueButton.isPressed()) return false;
+            controller.resumeGame();
+            return false;
+        });
+
+        giveUpButton.addListener(e -> {
+            if (!giveUpButton.isPressed()) return false;
+            controller.goToGameOver();
+            return false;
+        });
+
+        stage.addActor(table);
+    }
+
+    @Override
+    public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 1);
+        stage.act(Math.min(delta, 1 / 30f));
+        stage.draw();
+    }
+
+    @Override public void resize(int width, int height) {}
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
+    @Override public void dispose() {}
+}

@@ -1,0 +1,385 @@
+package com.tilldawn.Model;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class GameAssetManager {
+    private static GameAssetManager gameAssetManager;
+    private final Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+
+    private final String shana0 = "Images/Sprite/Walk/shana/Walk_1 #8630.png";
+    private final String shana1 = "Images/Sprite/Walk/shana/Walk_3 #8767.png";
+    private final String shana2 = "Images/Sprite/Walk/shana/Walk_2 #8709.png";
+    private final String shana3 = "Images/Sprite/Walk/shana/Walk_4.png";
+    private final String shana4 = "Images/Sprite/Walk/shana/Walk_5 #8686.png";
+    private final String shana5 = "Images/Sprite/Walk/shana/Walk_5 #8686.png";
+    private final String shana6 = "Images/Sprite/Walk/shana/Walk_6 #8440.png";
+    private final String shana7 = "Images/Sprite/Walk/shana/Walk_7.png";
+    private final Texture shana0_tex = new Texture(shana0);
+    private final Texture shana1_tex = new Texture(shana1);
+    private final Texture shana2_tex = new Texture(shana2);
+    private final Texture shana3_tex = new Texture(shana3);
+    private final Texture shana4_tex = new Texture(shana4);
+    private final Texture shana5_tex = new Texture(shana5);
+    private final Texture shana6_tex = new Texture(shana6);
+    private final Texture shana7_tex = new Texture(shana7);
+    private final Animation<Texture> shanaAnimation = new Animation<>(0.1f, shana0_tex, shana1_tex, shana2_tex, shana3_tex, shana4_tex, shana5_tex, shana6_tex, shana7_tex);
+
+    private final String shanaStill = "Images/Sprite/Idle/Idle_0.png";
+    private final Texture shanaStillTex = new Texture(shanaStill);
+    private final Animation<Texture> shanaStillAnimation = new Animation<>(0.1f, shanaStillTex);
+
+    private final String character1_idle0 = "Images/Sprite/Walk/diamond/Walk_0 #8679.png";
+    private final String character1_idle1 = "Images/Sprite/Walk/diamond/Walk_1.png";
+    private final String character1_idle2 = "Images/Sprite/Walk/diamond/Walk_2.png";
+    private final String character1_idle3 = "Images/Sprite/Walk/diamond/Walk_3.png";
+    private final String character1_idle4 = "Images/Sprite/Walk/diamond/Walk_5.png";
+    private final String character1_idle5 = "Images/Sprite/Walk/diamond/Walk_6.png";
+    private final Texture character1_idle0_tex = new Texture(character1_idle0);
+    private final Texture character1_idle1_tex = new Texture(character1_idle1);
+    private final Texture character1_idle2_tex = new Texture(character1_idle2);
+    private final Texture character1_idle3_tex = new Texture(character1_idle3);
+    private final Texture character1_idle4_tex = new Texture(character1_idle4);
+    private final Texture character1_idle5_tex = new Texture(character1_idle5);
+    private final Animation<Texture> diamondAnimation = new Animation<>(0.1f, character1_idle0_tex, character1_idle1_tex, character1_idle2_tex, character1_idle3_tex, character1_idle4_tex, character1_idle5_tex);
+
+    private final String diamondStill = "Images/Sprite/Idle/Idle_1.png";
+    private final Texture diamondStillTex = new Texture(diamondStill);
+    private final Animation<Texture> diamondStillAnimation = new Animation<>(0.1f, diamondStillTex);
+
+
+    private final String scarlet0 = "Images/Sprite/Walk/scarlet/Walk_0 #8278.png";
+    private final String scarlet1 = "Images/Sprite/Walk/scarlet/Walk_1 #8632.png";
+    private final String scarlet2 = "Images/Sprite/Walk/scarlet/Walk_2 #8711.png";
+    private final String scarlet3 = "Images/Sprite/Walk/scarlet/Walk_3 #8769.png";
+    private final String scarlet4 = "Images/Sprite/Walk/scarlet/Walk_5 #8688.png";
+    private final String scarlet5 = "Images/Sprite/Walk/scarlet/Walk_6 #8442.png";
+    private final String scarlet6 = "Images/Sprite/Walk/scarlet/Walk_7 #8214.png";
+    private final Texture scarlet0_tex = new Texture(scarlet0);
+    private final Texture scarlet1_tex = new Texture(scarlet1);
+    private final Texture scarlet2_tex = new Texture(scarlet2);
+    private final Texture scarlet3_tex = new Texture(scarlet3);
+    private final Texture scarlet4_tex = new Texture(scarlet4);
+    private final Texture scarlet5_tex = new Texture(scarlet5);
+    private final Texture scarlet6_tex = new Texture(scarlet6);
+    private  final  Animation<Texture> scarletAnimation = new Animation<>(0.1f, scarlet0_tex, scarlet1_tex, scarlet2_tex, scarlet3_tex, scarlet4_tex, scarlet5_tex, scarlet6_tex);
+
+    private final String scarletStill = "Images/Sprite/Idle/Idle_2.png";
+    private final Texture scarletStillTex = new Texture(scarletStill);
+    private final Animation<Texture> scarletStillAnimation = new Animation<>(0.1f, scarletStillTex);
+
+
+    private final String lilith0 = "Images/Sprite/Walk/lilith/Walk_0 #8279.png";
+    private final String lilith1 = "Images/Sprite/Walk/lilith/Walk_1 #8633.png";
+    private final String lilith2 = "Images/Sprite/Walk/lilith/Walk_2 #8712.png";
+    private final String lilith3 = "Images/Sprite/Walk/lilith/Walk_3 #8770.png";
+    private final String lilith4 = "Images/Sprite/Walk/lilith/Walk_4 #8465.png";
+    private final String lilith5 = "Images/Sprite/Walk/lilith/Walk_5 #8689.png";
+    private final String lilith6 = "Images/Sprite/Walk/lilith/Walk_6 #8443.png";
+    private final String lilith7 = "Images/Sprite/Walk/lilith/Walk_7 #8215.png";
+    private final Texture lilith0_tex = new Texture(lilith0);
+    private final Texture lilith1_tex = new Texture(lilith1);
+    private final Texture lilith2_tex = new Texture(lilith2);
+    private final Texture lilith3_tex = new Texture(lilith3);
+    private final Texture lilith4_tex = new Texture(lilith4);
+    private final Texture lilith5_tex = new Texture(lilith5);
+    private final Texture lilith6_tex = new Texture(lilith6);
+    private final Texture lilith7_tex = new Texture(lilith7);
+    private final Animation<Texture> lilithAnimation = new Animation<>(0.1f, lilith0_tex, lilith1_tex, lilith2_tex, lilith3_tex, lilith4_tex,
+        lilith5_tex, lilith6_tex, lilith7_tex);
+
+
+    private final String dasher0 = "Images/Sprite/Walk/dasher/Walk_0 #8277.png";
+    private final String dasher1 = "Images/Sprite/Walk/dasher/Walk_1 #8631.png";
+    private final String dasher2 = "Images/Sprite/Walk/dasher/Walk_2 #8710.png";
+    private final String dasher3 = "Images/Sprite/Walk/dasher/Walk_3 #8768.png";
+    private final String dasher4 = "Images/Sprite/Walk/dasher/Walk_4 #8464.png";
+    private final String dasher5 = "Images/Sprite/Walk/dasher/Walk_5 #8687.png";
+    private final String dasher6 = "Images/Sprite/Walk/dasher/Walk_6 #8441.png";
+    private final String dasher7 = "Images/Sprite/Walk/dasher/Walk_7 #8213.png";
+    private final Texture dasher0_tex = new Texture(dasher0);
+    private final Texture dasher1_tex = new Texture(dasher1);
+    private final Texture dasher2_tex = new Texture(dasher2);
+    private final Texture dasher3_tex = new Texture(dasher3);
+    private final Texture dasher4_tex = new Texture(dasher4);
+    private final Texture dasher5_tex = new Texture(dasher5);
+    private final Texture dasher6_tex = new Texture(dasher6);
+    private final Texture dasher7_tex = new Texture(dasher7);
+    private final Animation<Texture> dasherAnimation = new Animation<>(0.1f, dasher0_tex, dasher1_tex, dasher2_tex, dasher3_tex, dasher4_tex,
+        dasher5_tex, dasher6_tex, dasher7_tex);
+
+    private final String smg = "Images/Sprite/SMGStill/SMGStill.png";
+    private final Texture smgTexture = new Texture(smg);
+    private final String revolver = "Images/Sprite/RevolverStill/RevolverStill.png";
+    private final Texture revolverTexture = new Texture(revolver);
+    private final String shotgun = "Images/Sprite/T/T_Shotgun_SS_0.png";
+    private final Texture shotgunTexture = new Texture(shotgun);
+
+    private final String bullet = "bullet.png";
+    private final String mosterBullet = "Images/Sprite/EyeMonsterProjecitle/EyeMonsterProjecitle.png";
+    private Music backgroundMusic;
+    private float musicVolume = 3.0f; // default volume
+
+    private final String defaultMusicPath = "audio/default_theme.mp3";
+    private final String music1Path = "audio/theme1.mp3";
+    private final String music2Path = "audio/theme2.mp3";
+    private final String music3Path = "audio/theme3.mp3";
+    private final String music4Path = "audio/theme4.mp3";
+
+    private boolean sfxEnabled = true;
+
+    private final String brainMonster_idle0 = "Images/Sprite/BrainMonster/BrainMonster_0.png";
+    private final String brainMonster_idle1 = "Images/Sprite/BrainMonster/BrainMonster_1.png";
+    private final String brainMonster_idle2 = "Images/Sprite/BrainMonster/BrainMonster_2.png";
+    private final String brainMonster_idle3 = "Images/Sprite/BrainMonster/BrainMonster_3.png";
+    private final Texture brainMonster_idle0_tex = new Texture(brainMonster_idle0);
+    private final Texture brainMonster_idle1_tex = new Texture(brainMonster_idle1);
+    private final Texture brainMonster_idle2_tex = new Texture(brainMonster_idle2);
+    private final Texture brainMonster_idle3_tex = new Texture(brainMonster_idle3);
+    private final Animation<Texture> brainMonsterAnimation = new Animation<>(0.2f, brainMonster_idle0_tex, brainMonster_idle1_tex, brainMonster_idle2_tex, brainMonster_idle3_tex);
+
+    private final String eyeMonster0 = "Images/Sprite/EyeMonster/EyeMonster_0.png";
+    private final String eyeMonster1 = "Images/Sprite/EyeMonster/EyeMonster_1.png";
+    private final String eyeMonster2 = "Images/Sprite/EyeMonster/EyeMonster_2.png";
+    private final Texture eyeMonster_tex0 = new Texture(eyeMonster0);
+    private final Texture eyeMonster_tex1 = new Texture(eyeMonster1);
+    private final Texture eyeMonster_tex2 = new Texture(eyeMonster2);
+    private final  Animation<Texture> eyeMonsterAnimation = new Animation<>(0.2f, eyeMonster_tex0, eyeMonster_tex1, eyeMonster_tex2);
+
+    private final String winged0 = "Images/Sprite/WingedMonster/WingedMonster_0.png";
+    private final String winged1 = "Images/Sprite/WingedMonster/WingedMonster_1.png" ;
+    private final String winged2 = "Images/Sprite/WingedMonster/WingedMonster_2.png";
+    private final String winged3 = "Images/Sprite/WingedMonster/WingedMonster_3.png";
+    private final String winged4 = "Images/Sprite/WingedMonster/WingedMonster_4.png";
+    private final Texture winged0tex = new Texture(winged0);
+    private final Texture winged1tex = new Texture(winged1);
+    private final Texture winged2tex = new Texture(winged2);
+    private final Texture winged3tex = new Texture(winged3);
+    private final Texture winged4tex = new Texture(winged4);
+    private final Animation<Texture> wingedMonsterAnimation = new Animation<>(0.2f, winged0tex, winged1tex, winged2tex, winged3tex, winged4tex);
+
+
+//    private final String monsterDeath_0 = "Images/Sprite/DeathFX/DeathFX_0.png";
+//    private final String monsterDeath_1 = "Images/Sprite/DeathFX/DeathFX_1.png";
+//    private final String monsterDeath_2 = "Images/Sprite/DeathFX/DeathFX_2.png";
+//    private final String monsterDeath_3 = "Images/Sprite/DeathFX/DeathFX_3.png";
+//    private final Texture monsterDeath_tex0 = new Texture(monsterDeath_0);
+//    private final Texture monsterDeath_tex1 = new Texture(monsterDeath_1);
+//    private final Texture monsterDeath_tex2 = new Texture(monsterDeath_2);
+//    private final Texture monsterDeath_tex3 = new Texture(monsterDeath_3);
+    private final String monsterDeath0 = "Images/Sprite/FireballExplosion/FireballExplosion_0.png";
+    private final String monsterDeath1 = "Images/Sprite/FireballExplosion/FireballExplosion_1.png";
+    private final String monsterDeath2 = "Images/Sprite/FireballExplosion/FireballExplosion_2.png";
+    private final String monsterDeath3 = "Images/Sprite/FireballExplosion/FireballExplosion_3.png";
+    private final String monsterDeath4 = "Images/Sprite/FireballExplosion/FireballExplosion_4.png";
+    private final String monsterDeath5 = "Images/Sprite/FireballExplosion/FireballExplosion_5.png";
+    private final Texture monsterDeath_tex0 = new Texture(monsterDeath0);
+    private final Texture monsterDeath_tex1 = new Texture(monsterDeath1);
+    private final Texture monsterDeath_tex2 = new Texture(monsterDeath2);
+    private final Texture monsterDeath_tex3 = new Texture(monsterDeath3);
+    private final Texture monsterDeath_tex4 = new Texture(monsterDeath4);
+    private final Texture monsterDeath_tex5 = new Texture(monsterDeath5);
+
+    private final Animation<Texture> monsterDeathAnimation = new Animation<>(0.1f, monsterDeath_tex0, monsterDeath_tex1 , monsterDeath_tex2 , monsterDeath_tex3, monsterDeath_tex4, monsterDeath_tex5);
+
+
+    private final String tree0 = "Images/Sprite/T/T_TreeMonster_0.png";
+    private final String tree1 = "Images/Sprite/T/T_TreeMonster_1.png";
+    private final String tree2 = "Images/Sprite/T/T_TreeMonster_2.png";
+    private final Texture treeTex0 = new Texture(tree0);
+    private final Texture treeTex1 = new Texture(tree1);
+    private final Texture treeTex2 = new Texture(tree2);
+    private final Animation<Texture> treeAnimation = new Animation<>(1f, treeTex0, treeTex1, treeTex2);
+
+
+
+
+    private final Sound wonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/You Win (2).wav"));
+    private final Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/You Lose (4).wav"));
+
+
+    public Sound getLoseSound() {
+        return loseSound;
+    }
+
+    public Sound getWonSound() {
+        return wonSound;
+    }
+
+    public Animation<Texture> getTreeAnimation() {
+        return treeAnimation;
+    }
+
+    public Animation<Texture> getMonsterDeathAnimation() {
+        return monsterDeathAnimation;
+    }
+
+    public Animation<Texture> getBrainMonsterAnimation() {
+        return brainMonsterAnimation;
+    }
+
+    public Animation<Texture> getEyeMonsterAnimation() {
+        return eyeMonsterAnimation;
+    }
+
+    public Animation<Texture> getWingedMonsterAnimation() {
+        return wingedMonsterAnimation;
+    }
+
+    public Animation<Texture> getShanaAnimation() {
+        return shanaAnimation;
+    }
+
+    private final Map<String, String> moveKeys = new HashMap<String, String>() {{
+        put("up", "W");
+        put("down", "S");
+        put("left", "A");
+        put("right", "D");
+    }};
+
+    private GameAssetManager(){
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(defaultMusicPath));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(musicVolume);
+        backgroundMusic.play();
+    }
+
+    public static GameAssetManager getGameAssetManager(){
+        if (gameAssetManager == null){
+            gameAssetManager = new GameAssetManager();
+        }
+        return gameAssetManager;
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public Animation<Texture> getCharacter1_idle_animation() {
+        return diamondAnimation;
+    }
+
+    public String getCharacter1_idle0(){
+        return character1_idle0;
+    }
+
+    public Texture getSmgTexture(){
+        return smgTexture;
+    }
+
+    public String getSmg(){
+        return smg;
+    }
+    public String getRevolver() {
+        return revolver;
+    }
+    public String getShotgun() {
+        return shotgun;
+    }
+
+    public String getBullet(){
+        return bullet;
+    }
+
+    public void setMusic(String path) {
+        if (backgroundMusic != null) backgroundMusic.stop();
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(path));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(musicVolume);
+        backgroundMusic.play();
+    }
+
+    public void setVolume(float volume) {
+        this.musicVolume = volume;
+        if (backgroundMusic != null) {
+            backgroundMusic.setVolume(volume);
+        }
+    }
+
+    public String getMonsterBullet() {
+        return mosterBullet;
+    }
+
+    public float getVolume() {
+        return musicVolume;
+    }
+
+    public void stopMusic() {
+        if (backgroundMusic != null) backgroundMusic.stop();
+    }
+
+    public void playMusic() {
+        if (backgroundMusic != null) backgroundMusic.play();
+    }
+
+    public String getDefaultMusicPath() {
+        return defaultMusicPath;
+    }
+
+    public String getMusic1Path() {
+        return music1Path;
+    }
+
+    public String getMusic4Path() {
+        return music4Path;
+    }
+
+    public String getMusic3Path() {
+        return music3Path;
+    }
+
+    public String getMusic2Path() {
+        return music2Path;
+    }
+
+    public boolean isSfxEnabled() {
+        return sfxEnabled;
+    }
+
+    public void setSfxEnabled(boolean sfxEnabled) {
+        this.sfxEnabled = sfxEnabled;
+    }
+
+    public void setMoveKey(String direction, String key) {
+        moveKeys.put(direction.toLowerCase(), key);
+    }
+
+    public String getMoveKey(String direction) {
+        return moveKeys.getOrDefault(direction.toLowerCase(), "W");
+    }
+
+
+    public Animation<Texture> getShanaStillAnimation() {
+        return shanaStillAnimation;
+    }
+
+    public Animation<Texture> getDiamondAnimation() {
+        return diamondAnimation;
+    }
+
+    public Animation<Texture> getScarletAnimation() {
+        return scarletAnimation;
+    }
+
+    public Animation<Texture> getLilithAnimation() {
+        return lilithAnimation;
+    }
+    public Animation<Texture> getDasherAnimation() {
+        return dasherAnimation;
+    }
+
+    public Animation<Texture> getDiamondStillAnimation() {
+        return diamondStillAnimation;
+    }
+
+    public Animation<Texture> getScarletStillAnimation() {
+        return scarletStillAnimation;
+    }
+}
