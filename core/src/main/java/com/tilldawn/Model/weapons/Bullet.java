@@ -17,7 +17,7 @@ public class Bullet {
     public Bullet(float startX, float startY, Vector2 direction){
         this.direction = direction.nor(); // Normalize to ensure consistent speed
 
-        sprite.setSize(20, 20);
+        sprite.setSize(30, 30);
         sprite.setPosition(startX, startY);
 
         rect = new CollisionRect(startX, startY, sprite.getWidth(), sprite.getHeight());

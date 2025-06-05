@@ -104,7 +104,9 @@ public class GameController {
             TalentMenuController talentController = new TalentMenuController(); // create or retrieve this as needed
             Skin skin = GameAssetManager.getGameAssetManager().getSkin();
 
-            Main.getMain().setScreen(new PauseMenuView(pauseController, talentController, skin));
+            Main.getMain().setScreen(new PauseMenuView(pauseController,  skin, App.getCurrentPlayer()));
+            System.out.println("Abilities: " + player.getAcquiredAbilities());
+
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {

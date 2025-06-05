@@ -4,7 +4,9 @@
 	username: as
 	password: as
 	securityAnswer: blue
-	mostSurvivedTime: 16
+	score: 1552
+	kills: 16
+	mostSurvivedTime: 97
 }
 {
 	class: com.tilldawn.Model.User
@@ -176,5 +178,14 @@
 	username: dalalam
 	password: Dalam123!
 	securityAnswer: red
+}
+{
+	class: com.tilldawn.Model.User
+	username: Amir Hossein
+	password: AHnil1389!
+	securityAnswer: blue
+	score: 2870
+	kills: 10
+	mostSurvivedTime: 287
 }
 ]

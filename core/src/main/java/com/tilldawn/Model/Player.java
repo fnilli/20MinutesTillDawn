@@ -284,6 +284,9 @@ public class Player {
         Main.getMain().setScreen(new LevelUpView(levelUpController, skin));
     }
 
+    public Set<Ability> getAcquiredAbilities() {
+        return acquiredAbilities;
+    }
 
 
     private void updateLevel() {
@@ -336,6 +339,7 @@ public class Player {
     }
 
     public void activateAbility(Ability ability) {
+        acquiredAbilities.add(ability);
         switch (ability) {
             case SPEEDY:
                 if (!speedyActive) {

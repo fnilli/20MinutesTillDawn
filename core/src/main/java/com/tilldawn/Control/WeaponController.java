@@ -77,23 +77,9 @@ public class WeaponController {
         }
 
 
-        public void handleeWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
-
-            Vector3 mouseWorld3 = camera.unproject(new Vector3(mouseX, mouseY, 0));
-            Vector2 mouseWorld = new Vector2(mouseWorld3.x, mouseWorld3.y);
-
-            float startX = player.getPlayerSprite().getX() +  weapon.getSprite().getWidth() / 2;
-            float startY = player.getPlayerSprite().getY() +  weapon.getSprite().getHeight() / 2;
 
 
-            Vector2 direction = new Vector2(mouseWorld.x - startX, mouseWorld.y - startY).nor();
-
-            bullets.add(new Bullet(startX, startY, direction));
-            //todo
-            weapon.setAmmo(weapon.getAmmo() - 1);
-        }
-
-    public void handleWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
+    public void handleeWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
         if (isReloading) return;
 
         if (weapon.getAmmo() > 0) {
@@ -113,6 +99,43 @@ public class WeaponController {
             }
         }
     }
+
+    public void handleWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
+        if (isReloading) return;
+
+        int projectileCount = weapon.getType().getProjectile();
+        int currentAmmo = weapon.getAmmo();
+
+        if (currentAmmo <= 0) return;
+
+        Vector3 mouseWorld3 = camera.unproject(new Vector3(mouseX, mouseY, 0));
+        Vector2 mouseWorld = new Vector2(mouseWorld3.x, mouseWorld3.y);
+
+        float startX = player.getPlayerSprite().getX() + weapon.getSprite().getWidth() / 2;
+        float startY = player.getPlayerSprite().getY() + weapon.getSprite().getHeight() / 2;
+
+        Vector2 baseDirection = new Vector2(mouseWorld.x - startX, mouseWorld.y - startY).nor();
+
+        // How wide the spread is, in degrees
+        float spreadAngle = 15f; // shotgun-like spread
+
+        // Angle offset: start from -spread/2 to +spread/2
+        float startAngle = -spreadAngle * (projectileCount - 1) / 2f;
+
+//        for (int i = 0; i < projectileCount && i < currentAmmo; i++) {
+        for (int i = 0; i < projectileCount ; i++) {
+            float angleOffset = startAngle + i * spreadAngle;
+            Vector2 direction = baseDirection.cpy().rotateDeg(angleOffset);
+            bullets.add(new Bullet(startX, startY, direction));
+        }
+
+        weapon.setAmmo(currentAmmo - projectileCount);
+
+        if (weapon.getAmmo() <= 0 && App.getCurrentPlayer().getAutoReload()) {
+            startReloading();
+        }
+    }
+
 
     private void startReloading() {
         isReloading = true;

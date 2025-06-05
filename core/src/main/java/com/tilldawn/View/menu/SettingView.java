@@ -2,6 +2,7 @@ package com.tilldawn.View.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.tilldawn.Control.menu.MainMenuController;
 import com.tilldawn.Control.menu.SettingController;
 import com.tilldawn.Main;
+import com.tilldawn.Model.App;
 import com.tilldawn.Model.GameAssetManager;
 
 public class SettingView implements Screen {
@@ -48,6 +50,9 @@ public class SettingView implements Screen {
         //  Background
         Texture bgTexture = new Texture(Gdx.files.internal("blueBack.png"));
         Image background = new Image(bgTexture);
+        if (App.getCurrentPlayer().isDarkTheme()) {
+            background.setColor(Color.GRAY); // Or apply a shader for grayscale
+        }
         background.setFillParent(true);
         stage.addActor(background);
 

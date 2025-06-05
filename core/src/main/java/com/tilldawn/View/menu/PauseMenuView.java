@@ -3,17 +3,20 @@ package com.tilldawn.View.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Plane;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.TalentMenuController;
 import com.tilldawn.Control.menu.PauseMenuController;
+import com.tilldawn.Model.Ability;
+import com.tilldawn.Model.Player;
 
 public class PauseMenuView implements Screen {
 
     private Stage stage;
     private final PauseMenuController controller;
-    private final TalentMenuController talentController;
+    private final Player player;
     private final Skin skin;
     private final Table table;
     private final TextButton continueButton;
@@ -21,16 +24,16 @@ public class PauseMenuView implements Screen {
     private final Label cheatCodesLabel;
     private final Label abilitiesLabel;
 
-    public PauseMenuView(PauseMenuController controller, TalentMenuController talentController, Skin skin) {
+    public PauseMenuView(PauseMenuController controller,  Skin skin, Player player) {
         this.controller = controller;
-        this.talentController = talentController;
         this.skin = skin;
+        this.player = player;
 
         this.table = new Table();
         this.continueButton = new TextButton("Continue", skin);
         this.giveUpButton = new TextButton("Give Up", skin);
-        this.cheatCodesLabel = new Label(talentController.getCheatCodes(), skin);
-        this.abilitiesLabel = new Label(talentController.getAbilitiesDescription(), skin);
+        this.cheatCodesLabel = new Label(getCheatCodes(), skin);
+        this.abilitiesLabel = new Label(getAcquiredAbilitiesDescription(player), skin);
 
         controller.setView(this);
     }
@@ -57,8 +60,10 @@ public class PauseMenuView implements Screen {
 
         // Section: Achieved Abilities
         contentTable.add(new Label("Achieved Abilities", skin, "title")).row();
+        abilitiesLabel.setText(getAcquiredAbilitiesDescription(player));
         abilitiesLabel.setWrap(true);
         contentTable.add(abilitiesLabel).row();
+
 
         scrollPane = new ScrollPane(contentTable, skin);
         scrollPane.setScrollingDisabled(true, false);
@@ -101,4 +106,18 @@ public class PauseMenuView implements Screen {
     @Override public void resume() {}
     @Override public void hide() {}
     @Override public void dispose() {}
+
+    public String getAcquiredAbilitiesDescription(Player player) {
+        StringBuilder sb = new StringBuilder();
+        for (Ability ability : player.getAcquiredAbilities()) {
+            sb.append("• ").append(ability.name()).append("\n");
+        }
+        return sb.length() > 0 ? sb.toString() : "No abilities acquired yet.";
+    }
+
+    public String getCheatCodes() {
+        return "Cheats:\n- M key: -60 seconds\n- C key: Level up\n- H key: Increase heath\n- T key: add 10 ammo";
+    }
+
+
 }

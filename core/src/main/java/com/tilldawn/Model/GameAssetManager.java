@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.HashMap;
@@ -12,7 +13,9 @@ import java.util.Map;
 
 public class GameAssetManager {
     private static GameAssetManager gameAssetManager;
-    private final Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+    private final Skin skin = new Skin(Gdx.files.internal("assets/skin/pixthulhu-ui.json"));
+    private final Skin darkSkin = new Skin(Gdx.files.internal("assets/skin/pixthulhu-ui-dark.json"));
+
 
     private final String shana0 = "Images/Sprite/Walk/shana/Walk_1 #8630.png";
     private final String shana1 = "Images/Sprite/Walk/shana/Walk_3 #8767.png";
@@ -258,7 +261,14 @@ public class GameAssetManager {
         return gameAssetManager;
     }
 
+//    public Skin gettSkin() {
+//        return skin;
+//    }
+
     public Skin getSkin() {
+        if (App.getCurrentPlayer() != null && App.getCurrentPlayer().isDarkTheme() ) {
+            return darkSkin;
+        }
         return skin;
     }
 
