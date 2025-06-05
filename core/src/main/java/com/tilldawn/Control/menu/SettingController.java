@@ -5,6 +5,8 @@ import com.tilldawn.Model.App;
 import com.tilldawn.Model.GameAssetManager;
 import com.tilldawn.View.menu.MainMenuView;
 import com.tilldawn.View.menu.SettingView;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 
 public class SettingController {
     private SettingView view;
@@ -45,14 +47,33 @@ public class SettingController {
     public void setSfxEnabled(boolean enabled) {
         GameAssetManager.getGameAssetManager().setSfxEnabled(enabled);
     }
-    public void setMoveKey(String direction, String key) {
+    public void setMoveeKey(String direction, String key) {
         // Save key setting to player preferences or memory //TODO
-        GameAssetManager.getGameAssetManager().setMoveKey(direction, key);
     }
 
     public String getMoveKey(String direction) {
-        return GameAssetManager.getGameAssetManager().getMoveKey(direction);
+        Preferences prefs = Gdx.app.getPreferences("PlayerSettings");
+        switch (direction) {
+            case "up": return prefs.getString("moveUp", "W");
+            case "down": return prefs.getString("moveDown", "S");
+            case "left": return prefs.getString("moveLeft", "A");
+            case "right": return prefs.getString("moveRight", "D");
+            default: return "W";
+        }
     }
+
+
+    public void setMoveKey(String direction, String key) {
+        Preferences prefs = Gdx.app.getPreferences("PlayerSettings");
+        switch (direction) {
+            case "up": prefs.putString("moveUp", key); break;
+            case "down": prefs.putString("moveDown", key); break;
+            case "left": prefs.putString("moveLeft", key); break;
+            case "right": prefs.putString("moveRight", key); break;
+        }
+        prefs.flush(); // Save the preferences
+    }
+
 
     public boolean isAutoReloadEnabled() {
         return App.getCurrentPlayer().getAutoReload();

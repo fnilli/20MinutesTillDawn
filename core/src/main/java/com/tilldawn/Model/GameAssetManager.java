@@ -356,10 +356,6 @@ public class GameAssetManager {
     }
 
 
-    public Animation<Texture> getShanaStillAnimation() {
-        return shanaStillAnimation;
-    }
-
     public Animation<Texture> getDiamondAnimation() {
         return diamondAnimation;
     }
@@ -375,11 +371,4 @@ public class GameAssetManager {
         return dasherAnimation;
     }
 
-    public Animation<Texture> getDiamondStillAnimation() {
-        return diamondStillAnimation;
-    }
-
-    public Animation<Texture> getScarletStillAnimation() {
-        return scarletStillAnimation;
-    }
 }

@@ -33,9 +33,8 @@ public class GameController {
     playerController = controller;
     worldController = new WorldController(playerController);
     weaponController = new WeaponController(new Weapon(sharedPlayer.getWeaponType()), sharedPlayer, worldController);
-//    smgWeaponController = new SmgWeaponController(new SmgWeapon(), sharedPlayer, worldController); // Pass shared player
-//    shotgunController = new ShotgunController(new ShotgunWeapon(), sharedPlayer, worldController );
-//    revolverController = new RevolverController(new RevolverWeapon(), sharedPlayer, worldController);
+
+    playerController.loadKeyBindingsFromPreferences();
 
 
     }

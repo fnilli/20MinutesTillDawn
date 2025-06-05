@@ -38,18 +38,7 @@ public class PreGameMenuController {
         view.setMessage("Avatar set to " + player.getHero().toString());
     }
 
-    public void settvatar(String fileName) {
 
-        App.getCurrentPlayer().setAvatarPath("assets/Images/Sprite/Idle/" + fileName);
-        userDatabase.save();
-        view.setMessage("Avatar set to " + fileName);
-    }
-
-//    public void setWeaponType(String path) {
-//        App.getCurrentPlayer().setWeaponPath("assets/" + path);
-//        view.setMessage("Weapon set to " + path);
-//
-//    }
 
     public void startGame() {
         if (view != null) {
