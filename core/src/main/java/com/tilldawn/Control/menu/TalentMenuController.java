@@ -31,7 +31,12 @@ public class TalentMenuController {
     }
 
     public String getAbilitiesDescription() {
-        return "Abilities:\n- Dash: Short burst of speed (Cooldown: 5s)\n- Heal: Restores health (Cooldown: 10s)";
+        return "Vitality,      +1 max HP\n" +
+            "Damager,       +25% damage for 10s\n" +
+            "Procrease,     +1 projectile count\n" +
+            "Amocrease,     +5 max ammo\n" +
+            "Speedy,         x2 movement speed for 10s";
+//        return "Abilities:\n- Dash: Short burst of speed (Cooldown: 5s)\n- Heal: Restores health (Cooldown: 10s)";
     }
 
 }
