@@ -400,5 +400,41 @@ public class Player {
         }
     }
 
+    public void reset() {
+        // Reset stats
+        this.score = 0;
+        this.level = 1;
+        this.xp = 0;
+        this.kills = 0;
+        this.ammo = 0;
+        this.time = 0;
+        this.Health = hero.getHp();  // Reset HP based on current hero
+        this.speed = hero.getSpeed(); // Reset speed based on current hero
+
+        // Reset position (center of screen)
+        playerSprite.setPosition(
+            (float) Gdx.graphics.getWidth() / 2,
+            (float) Gdx.graphics.getHeight() / 2
+        );
+        rect.move(playerSprite.getX(), playerSprite.getY());
+
+        // Reset ability states
+        acquiredAbilities.clear();
+        speedyActive = false;
+        speedyTimer = 0f;
+        damagerActive = false;
+        damagerTimer = 0f;
+
+        // Reset status flags
+        takingDamage = false;
+        damageTime = 0f;
+        lastHitTime = 0f;
+
+        // If you want to reset weapon or reload status, uncomment these:
+        // weaponType = Weapons.Smg;
+        // autoReload = true;
+    }
+
+
 
 }

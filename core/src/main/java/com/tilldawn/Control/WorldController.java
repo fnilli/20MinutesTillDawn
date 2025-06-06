@@ -42,8 +42,8 @@ public class WorldController {
 
         treeMonsterSpawner();
         monsterController.spawnMonster(200, 300);
-        eyeMonsterController.spawnMonster(200, 300);
-//        eyeMonsterController.spawnMonster(700,100);
+        eyeMonsterController.spawnMonster(6000, 5000);
+        monsterController.spawnMonster(700,1000);
 //        eyeMonsterController.spawnMonster(1000, 500);
 
     }

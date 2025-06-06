@@ -82,8 +82,27 @@ public class WinView implements Screen {
         retryButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
+
+                // Reset the existing player state
+                Player currentPlayer = App.getCurrentPlayer();
+                if (currentPlayer != null) {
+                    currentPlayer.reset();
+                    timeRemaining = currentPlayer.getTotalGameTime();
+
+                }
+
+                // Create a new GameController and GameView (fresh run)
+                GameController controller = new GameController();
+                GameView gameView = new GameView(controller, GameAssetManager.getGameAssetManager().getSkin());
+
+                // Make sure App knows about the new view
+                App.setGameView(gameView);
+
                 Main.getMain().getScreen().dispose();
-                Main.getMain().setScreen(new MainMenuView(new MainMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+                Main.getMain().setScreen(gameView);
             }
         });
 
@@ -93,6 +112,9 @@ public class WinView implements Screen {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new MainMenuView(new MainMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }

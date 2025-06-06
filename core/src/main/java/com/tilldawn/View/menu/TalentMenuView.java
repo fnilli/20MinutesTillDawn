@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.TalentMenuController;
+import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 import com.tilldawn.Model.TranslatableText;
 
 public class TalentMenuView implements Screen {
@@ -79,6 +81,9 @@ public class TalentMenuView implements Screen {
 
         backButton.addListener(e -> {
             if (!backButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.back();
             return false;
         });
