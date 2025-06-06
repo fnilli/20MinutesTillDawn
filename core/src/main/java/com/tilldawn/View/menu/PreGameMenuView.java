@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.PreGameMenuController;
 import com.tilldawn.Model.App;
 import com.tilldawn.Model.Heros;
+import com.tilldawn.Model.TranslatableText;
 import com.tilldawn.Model.weapons.Weapons;
 
 public class PreGameMenuView implements Screen {
@@ -32,13 +33,15 @@ public class PreGameMenuView implements Screen {
 
     public PreGameMenuView(PreGameMenuController controller, Skin skin) {
         this.controller = controller;
-        this.titleLabel = new Label("P r e  G a m e    M e n u", skin.get("title", Label.LabelStyle.class));
         this.table = new Table();
         this.messageLabel = new Label("", skin);
         messageLabel.setColor(Color.MAGENTA);
-        this.backButton = new TextButton("Back", skin);
-        this.startGameButton = new TextButton("Start Game", skin);
-        this.selectGameTimeLabel = new Label("Select Game Time:", skin);
+
+        this.titleLabel = new Label(TranslatableText.PreGameMenuTitle.getText(), skin.get("title", Label.LabelStyle.class));
+        this.backButton = new TextButton(TranslatableText.BackButton.getText(), skin);
+        this.startGameButton = new TextButton(TranslatableText.StartGameButton.getText(), skin);
+        this.selectGameTimeLabel = new Label(TranslatableText.SelectGameTimeLabel.getText(), skin);
+
 
         // Load image button styles
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
@@ -149,29 +152,32 @@ public class PreGameMenuView implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 App.getCurrentPlayer().setWeaponType(Weapons.Revolver);
-                setMessage("weapon set to Revolver");
-            }
+                setMessage(TranslatableText.WeaponSetToRevolver.getText());            }
         });
 
         weaponButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 App.getCurrentPlayer().setWeaponType(Weapons.Shotgun);
-                setMessage("weapon set to Shotgun");
-            }
+                setMessage(TranslatableText.WeaponSetToShotgun.getText());            }
         });
 
         weaponButton3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 App.getCurrentPlayer().setWeaponType(Weapons.Smg);
-                setMessage("weapon set to Smg");
-            }
+                setMessage(TranslatableText.WeaponSetToSmg.getText());            }
         });
 
         this.gameTimeSelect = new SelectBox<>(skin);
-        this.gameTimeSelect.setItems("2 minutes", "5 minutes", "10 minutes", "20 minutes");
-        this.gameTimeSelect.setSelected("2 minutes");
+        this.gameTimeSelect.setItems(
+            TranslatableText.GameTimeOption2.getText(),
+            TranslatableText.GameTimeOption5.getText(),
+            TranslatableText.GameTimeOption10.getText(),
+            TranslatableText.GameTimeOption20.getText()
+        );
+        this.gameTimeSelect.setSelected(TranslatableText.GameTimeOption2.getText());
+
         this.gameTimeSelect.addListener(event -> {
             controller.selectGameTime(this.gameTimeSelect.getSelected());
             return false;

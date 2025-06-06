@@ -13,10 +13,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldawn.Control.menu.MainMenuController;
 import com.tilldawn.Main;
-import com.tilldawn.Model.App;
-import com.tilldawn.Model.GameAssetManager;
-import com.tilldawn.Model.User;
-import com.tilldawn.Model.UserDatabase;
+import com.tilldawn.Model.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -36,8 +33,12 @@ public class ScoreboardMenuView implements Screen {
         table.top();  // important: align contents to top inside ScrollPane
 
         sortBox = new SelectBox<>(skin);
-        sortBox.setItems("Score", "Username", "Kills", "Survive Time");
-        sortBox.addListener(new ChangeListener() {
+        sortBox.setItems(
+            TranslatableText.ScoreboardSortScore.getText(),
+            TranslatableText.ScoreboardSortUsername.getText(),
+            TranslatableText.ScoreboardSortKills.getText(),
+            TranslatableText.ScoreboardSortSurviveTime.getText()
+        );        sortBox.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 updateTable(sortBox.getSelected());
@@ -99,17 +100,21 @@ public class ScoreboardMenuView implements Screen {
 
         switch (sortType) {
             case "Username":
+            case "Nom d'utilisateur":
                 users.sort(Comparator.comparing(User::getUsername));
                 break;
             case "Kills":
+            case "Éliminations":
                 users.sort(Comparator.comparingInt(User::getKills).reversed());
                 break;
             case "Survive Time":
+            case "Temps de survie":
                 users.sort(Comparator.comparingDouble(User::getMostSurvivedTime).reversed());
                 break;
             default:
                 users.sort(Comparator.comparingInt(User::getScore).reversed());
         }
+
 
         // Header row with bold style
         Label.LabelStyle headerStyle = new Label.LabelStyle(skin.getFont("font"), Color.WHITE);
@@ -117,10 +122,10 @@ public class ScoreboardMenuView implements Screen {
         headerRow.setBackground(skin.newDrawable("white", Color.DARK_GRAY));
         headerRow.pad(5);
 
-        Label usernameH = new Label("Username", headerStyle);
-        Label scoreH = new Label("Score", headerStyle);
-        Label killsH = new Label("Kills", headerStyle);
-        Label surviveH = new Label("Survive Time", headerStyle);
+        Label usernameH = new Label(TranslatableText.ScoreboardSortUsername.getText(), headerStyle);
+        Label scoreH = new Label(TranslatableText.ScoreboardSortScore.getText(), headerStyle);
+        Label killsH = new Label(TranslatableText.ScoreboardSortKills.getText(), headerStyle);
+        Label surviveH = new Label(TranslatableText.ScoreboardSortSurviveTime.getText(), headerStyle);
 
         usernameH.setAlignment(Align.left);
         scoreH.setAlignment(Align.center);

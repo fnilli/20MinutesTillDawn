@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.ProfileMenuController;
 import com.tilldawn.Model.App;
+import com.tilldawn.Model.TranslatableText;
 
 public class ProfileMenuView implements Screen {
 
@@ -29,19 +30,21 @@ public class ProfileMenuView implements Screen {
     private final TextButton dragDropButton;
 
 
+
+
     public ProfileMenuView(ProfileMenuController controller, Skin skin) {
         this.controller = controller;
-        this.titleLabel = new Label("P r o f i l e    M e n u", skin.get("title", Label.LabelStyle.class));
+        this.titleLabel = new Label(TranslatableText.ProfileMenuTitle.getText(), skin.get("title", Label.LabelStyle.class));
         this.changingField = new TextField("", skin);
-        this.changeUsernmeButton = new TextButton("Change Username", skin);
-        this.changePasswordButton = new TextButton("Change Password", skin);
-        this.deleteAccountButton = new TextButton("Delete Account", skin);
-        this.changeAvatarButton = new TextButton("Choose Avatar", skin);
+        this.changeUsernmeButton = new TextButton(TranslatableText.ChangeUsername.getText(), skin);
+        this.changePasswordButton = new TextButton(TranslatableText.ChangePassword.getText(), skin);
+        this.deleteAccountButton = new TextButton(TranslatableText.DeleteAccount.getText(), skin);
+        this.changeAvatarButton = new TextButton(TranslatableText.ChooseAvatar.getText(), skin);
         this.table = new Table();
         this.messageLabel = new Label("", skin);
         messageLabel.setColor(Color.MAGENTA);
-        this.backButton = new TextButton("Back", skin);
-        this.dragDropButton = new TextButton("Drag & Drop", skin);
+        this.backButton = new TextButton(TranslatableText.Back.getText(), skin);
+        this.dragDropButton = new TextButton(TranslatableText.DragAndDrop.getText(), skin);
 
         // Load image button styles
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
@@ -117,7 +120,7 @@ public class ProfileMenuView implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 String newUsername = changingField.getText().trim();
                 if (newUsername.isEmpty()) {
-                    messageLabel.setText("Username cannot be empty.");
+                    messageLabel.setText(TranslatableText.EmptyUsernameWarning.getText());
                 } else {
                     controller.changeUsername(newUsername);
                 }
@@ -129,12 +132,13 @@ public class ProfileMenuView implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 String newPassword = changingField.getText().trim();
                 if (newPassword.isEmpty()) {
-                    messageLabel.setText("Password cannot be empty.");
+                    messageLabel.setText(TranslatableText.EmptyPasswordWarning.getText());
                 } else {
                     controller.changePassword(newPassword);
                 }
             }
         });
+
 
         deleteAccountButton.addListener(event -> {
             if (!deleteAccountButton.isPressed()) return false;
@@ -196,8 +200,9 @@ public class ProfileMenuView implements Screen {
 
     public void processDragDrop(String file) {
         App.getCurrentPlayer().setAvatarPath(file);
-        setMessage("avatar photo updated");
+        setMessage(TranslatableText.AvatarUpdated.getText());
     }
+
 
     @Override
     public void render(float v) {

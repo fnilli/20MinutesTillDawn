@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldawn.Control.menu.LoginMenuController;
+import com.tilldawn.Model.TranslatableText;
 
 public class LoginMenuView implements Screen {
     private final LoginMenuController controller;
@@ -28,19 +29,19 @@ public class LoginMenuView implements Screen {
 
     public LoginMenuView(LoginMenuController controller, Skin skin) {
         this.controller = controller;
-        this.titleLabel = new Label("L o g i n    M e n u", skin.get("title", Label.LabelStyle.class));
+        this.titleLabel = new Label(TranslatableText.LoginMenuTitle.getText(), skin.get("title", Label.LabelStyle.class));
         this.usernameField = new TextField("", skin);
         this.passwordField = new TextField("", skin);
-        this.loginButton = new TextButton("Login", skin);
+        this.loginButton = new TextButton(TranslatableText.LoginButton.getText(), skin);
         this.table = new Table();
         this.messageLabel = new Label("", skin); // empty message initially
-        this.forgotPasswordButton = new TextButton("Forgot Password?", skin);
+        this.forgotPasswordButton = new TextButton(TranslatableText.ForgotPassword.getText(), skin);
         this.securityAnswerField = new TextField("", skin);
-        this.submitSecurityButton = new TextButton("Submit", skin);
-        securityAnswerField.setMessageText("Your security answer");
+        this.submitSecurityButton = new TextButton(TranslatableText.Submit.getText(), skin);
+        securityAnswerField.setMessageText(TranslatableText.SecurityAnswer.getText());
         securityAnswerField.setVisible(false);
         submitSecurityButton.setVisible(false);
-        this.backButton = new TextButton("Back", skin);
+        this.backButton = new TextButton(TranslatableText.Back.getText(), skin);
 
         passwordField.setPasswordCharacter('*');
         passwordField.setPasswordMode(true);
@@ -66,10 +67,10 @@ public class LoginMenuView implements Screen {
         table.center();
         table.add(titleLabel).colspan(2).padTop(30);
         table.row().pad(10, 0, 10, 0);
-        table.add(new Label("Username:", controller.getSkin())).left();
+        table.add(new Label(TranslatableText.Username.getText()+":", controller.getSkin())).left();
         table.add(usernameField).width(300);
         table.row().pad(10, 0, 10, 0);
-        table.add(new Label("Password:", controller.getSkin())).left();
+        table.add(new Label(TranslatableText.Password.getText()+":", controller.getSkin())).left();
         table.add(passwordField).width(300);
         table.row().pad(10, 250, 10, 0);
         table.add(loginButton).width(500).padLeft(300);

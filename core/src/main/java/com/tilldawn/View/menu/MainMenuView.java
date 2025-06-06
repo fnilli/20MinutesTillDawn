@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldawn.Control.menu.MainMenuController;
 import com.tilldawn.Model.App;
+import com.tilldawn.Model.TranslatableText;
 
 public class MainMenuView implements Screen {
     private Stage stage;
@@ -32,19 +33,18 @@ public class MainMenuView implements Screen {
     public MainMenuView(MainMenuController controller, Skin skin) {
         this.controller = controller;
 
-        this.continueButton = new TextButton("Load Game", skin);
-        this.settingsButton = new TextButton("Settings", skin);
-        this.profileButton = new TextButton("Profile", skin);
-        this.preGameButton = new TextButton("Pre-Game", skin);
-        this.scoreboardButton = new TextButton("Scoreboard", skin);
-        this.talentButton = new TextButton("Talent", skin);
-        this.logoutButton = new TextButton("Logout", skin);
+        this.continueButton = new TextButton(TranslatableText.LoadGame.getText(), skin);
+        this.settingsButton = new TextButton(TranslatableText.Settings.getText(), skin);
+        this.profileButton = new TextButton(TranslatableText.Profile.getText(), skin);
+        this.preGameButton = new TextButton(TranslatableText.PreGame.getText(), skin);
+        this.scoreboardButton = new TextButton(TranslatableText.Scoreboard.getText(), skin);
+        this.talentButton = new TextButton(TranslatableText.Talent.getText(), skin);
+        this.logoutButton = new TextButton(TranslatableText.Logout.getText(), skin);
+        this.gameTitle = new Label(TranslatableText.MainMenuTitle.getText(), skin.get("title", Label.LabelStyle.class));
 
-        this.gameTitle = new Label("M a i n    M e n u", skin.get("title", Label.LabelStyle.class));
+        this.usernameLabel = new Label(TranslatableText.UsernameLabel.getText() + "Guest", skin);
+        this.scoreLabel = new Label(TranslatableText.ScoreLabel.getText() + "0", skin);
 
-        // Player info labels
-        this.usernameLabel = new Label("Username: Guest", skin);
-        this.scoreLabel = new Label("Score: 0", skin);
 
         // Placeholder avatar image
         Texture avatarTexture = new Texture(App.getCurrentPlayer().getAvatarPath());
@@ -90,7 +90,7 @@ public class MainMenuView implements Screen {
         leftColumn.row();
         leftColumn.add(continueButton).width(320).padBottom(10);
         leftColumn.row();
-        leftColumn.add(logoutButton).width(320);
+        leftColumn.add(preGameButton).width(320);
 
 // === RIGHT SIDE: Menu Options ===
         Table rightColumn = new Table();
@@ -100,11 +100,11 @@ public class MainMenuView implements Screen {
         rightColumn.row();
         rightColumn.add(profileButton).width(320).padBottom(10);
         rightColumn.row();
-        rightColumn.add(preGameButton).width(320).padBottom(10);
+        rightColumn.add(talentButton).width(320);
         rightColumn.row();
         rightColumn.add(scoreboardButton).width(320).padBottom(10);
         rightColumn.row();
-        rightColumn.add(talentButton).width(320);
+        rightColumn.add(logoutButton).width(320).padBottom(10);
 
 // === Add Both Columns to Root Table ===
         rootTable.add(leftColumn).pad(80,0,0,300).top().left();
@@ -148,10 +148,11 @@ public class MainMenuView implements Screen {
     public Label getScoreLabel() { return scoreLabel; }
 
     public void setUsername(String username) {
-        usernameLabel.setText("Username: " + username);
+        usernameLabel.setText(TranslatableText.UsernameLabel.getText() + username);
     }
 
     public void setScore(int score) {
-        scoreLabel.setText("Score: " + score);
+        scoreLabel.setText(TranslatableText.ScoreLabel.getText() + score);
     }
+
 }

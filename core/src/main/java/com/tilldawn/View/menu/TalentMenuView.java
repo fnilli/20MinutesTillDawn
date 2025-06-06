@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.TalentMenuController;
+import com.tilldawn.Model.TranslatableText;
 
 public class TalentMenuView implements Screen {
 
@@ -21,7 +22,7 @@ public class TalentMenuView implements Screen {
         this.controller = controller;
         this.skin = skin;
         this.table = new Table();
-        this.backButton = new TextButton("Back", skin);
+        this.backButton = new TextButton(TranslatableText.Back.getText(), skin);
 
         this.heroHintsLabel = new Label(controller.getHeroHints(), skin);
         this.keyBindingsLabel = new Label(controller.getKeyBindings(), skin);
@@ -47,22 +48,22 @@ public class TalentMenuView implements Screen {
         contentTable.defaults().left().pad(10).width(800);
 
         // Section: Hero Hints
-        contentTable.add(new Label("Hero Hints", skin, "title")).row();
+        contentTable.add(new Label(TranslatableText.HeroHints.getText(), skin, "title")).row();
         heroHintsLabel.setWrap(true);
         contentTable.add(heroHintsLabel).row();
 
         // Section: Key Bindings
-        contentTable.add(new Label("Key Bindings", skin, "title")).row();
+        contentTable.add(new Label(TranslatableText.KeyBindings.getText(), skin, "title")).row();
         keyBindingsLabel.setWrap(true);
         contentTable.add(keyBindingsLabel).row();
 
         // Section: Cheat Codes
-        contentTable.add(new Label("Cheat Codes", skin, "title")).row();
+        contentTable.add(new Label(TranslatableText.CheatCodes.getText(), skin, "title")).row();
         cheatCodesLabel.setWrap(true);
         contentTable.add(cheatCodesLabel).row();
 
         // Section: Abilities
-        contentTable.add(new Label("Abilities", skin, "title")).row();
+        contentTable.add(new Label(TranslatableText.Abilities.getText(), skin, "title")).row();
         abilitiesLabel.setWrap(true);
         contentTable.add(abilitiesLabel).row();
 
@@ -72,7 +73,7 @@ public class TalentMenuView implements Screen {
 
         table.setFillParent(true);
         table.top().padTop(30);
-        table.add(new Label("Talent (Hint) Menu", skin, "title")).padBottom(20).row();
+        table.add(new Label(TranslatableText.TalentMenuTitle.getText(), skin, "title")).padBottom(20).row();
         table.add(scrollPane).expandY().fill().padBottom(20).row();
         table.add(backButton).width(200);
 

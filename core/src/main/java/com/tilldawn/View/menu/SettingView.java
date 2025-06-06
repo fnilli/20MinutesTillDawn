@@ -15,21 +15,23 @@ import com.tilldawn.Control.menu.SettingController;
 import com.tilldawn.Main;
 import com.tilldawn.Model.App;
 import com.tilldawn.Model.GameAssetManager;
+import com.tilldawn.Model.TranslatableText;
 
 public class SettingView implements Screen {
     private Stage stage;
     private final Skin skin = GameAssetManager.getGameAssetManager().getSkin();
     private final SettingController controller;
 
-    private TextButton backButton = new TextButton("Back to Main Menu", skin);
-    private Label volumeLabel = new Label("Music Volume", skin);
-    private Label musicLabel = new Label("Music Track", skin);
+
+    private TextButton backButton = new TextButton(TranslatableText.BackToMainMenu.getText(), skin);
+//    private Label volumeLabel = new Label("Music Volume", skin);
+//    private Label musicLabel = new Label("Music Track", skin);
     private CheckBox autoReloadCheckBox;
     private CheckBox darkThemeCheckBox;
 
 
     private CheckBox sfxCheckBox;
-    private Label sfxLabel = new Label("SFX", skin);
+//    private Label sfxLabel = new Label("SFX", skin);
 
     private Label controlsLabel = new Label("Controls", skin);
     private SelectBox<String> moveUpSelect;
@@ -38,8 +40,15 @@ public class SettingView implements Screen {
     private SelectBox<String> moveRightSelect;
 
     private SelectBox<String> selectLanguage;
-    private Label selectLanguageLabel = new Label("Select Language", skin);
+    private Label selectLanguageLabel = new Label(TranslatableText.SelectLanguage.getText(), skin);
 
+
+
+    Label volumeLabel = new Label(TranslatableText.MusicVolume.getText(), skin);
+    Label musicLabel = new Label(TranslatableText.MusicTrack.getText(), skin);
+    Label sfxLabel = new Label(TranslatableText.SoundEffects.getText(), skin);
+    Label autoReloadLabel = new Label(TranslatableText.AutoReload.getText(), skin);
+    Label darkThemeLabel = new Label(TranslatableText.DarkTheme.getText(), skin);
 
 
     public SettingView(SettingController controller) {
@@ -64,11 +73,13 @@ public class SettingView implements Screen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.top().padTop(30);
-        mainTable.add(new Label("S e t t i n g", skin, "title")).padBottom(20).padLeft(300).row();
+//        mainTable.add(new Label("S e t t i n g", skin, "title")).padBottom(20).padLeft(300).row();
+        mainTable.add(new Label(TranslatableText.SettingMenuTitle.getText(), skin, "title"))
+            .padBottom(20).padLeft(300).row();
 
         // Left table: Music & SFX
         Table leftTable = new Table().top().left();
-        Label volumeLabel = new Label("Volume", skin);
+        Label volumeLabel = new Label(TranslatableText.MusicVolume.getText(), skin);
         Slider volumeSlider = new Slider(0f, 1f, 0.1f, false, skin);
         volumeSlider.setValue(GameAssetManager.getGameAssetManager().getVolume());
         volumeSlider.addListener(event -> {
@@ -76,7 +87,7 @@ public class SettingView implements Screen {
             return false;
         });
 
-        Label musicLabel = new Label("Music", skin);
+        Label musicLabel = new Label(TranslatableText.MusicTrack.getText(), skin);
         SelectBox<String> musicSelect = new SelectBox<>(skin);
         musicSelect.setItems("Default", "Theme1", "Theme2", "Theme3", "Theme4");
         musicSelect.setSelected("Default");
@@ -85,7 +96,7 @@ public class SettingView implements Screen {
             return false;
         });
 
-        Label sfxLabel = new Label("Sound Effects", skin);
+        Label sfxLabel = new Label(TranslatableText.SoundEffects.getText(), skin);
         CheckBox sfxCheckBox = new CheckBox("", skin);
         sfxCheckBox.setChecked(GameAssetManager.getGameAssetManager().isSfxEnabled());
         sfxCheckBox.addListener(event -> {
@@ -94,7 +105,7 @@ public class SettingView implements Screen {
         });
 
         // Auto-Reload
-        Label autoReloadLabel = new Label("Auto Reload", skin);
+        Label autoReloadLabel = new Label(TranslatableText.AutoReload.getText(), skin);
         autoReloadCheckBox = new CheckBox("", skin);
         autoReloadCheckBox.setChecked(controller.isAutoReloadEnabled());
         autoReloadCheckBox.addListener(event -> {
@@ -103,7 +114,7 @@ public class SettingView implements Screen {
         });
 
 // Dark Theme
-        Label darkThemeLabel = new Label("Dark B/W Theme", skin);
+        Label darkThemeLabel = new Label(TranslatableText.DarkTheme.getText(), skin);
         darkThemeCheckBox = new CheckBox("", skin);
         darkThemeCheckBox.setChecked(controller.isDarkThemeEnabled());
         darkThemeCheckBox.addListener(event -> {
@@ -139,7 +150,8 @@ public class SettingView implements Screen {
 
         // Right table: Controls
         Table rightTable = new Table().top().right();
-        Label controlLabel = new Label("Controls", skin);
+//        Label controlLabel = new Label("Controls", skin);
+        Label controlLabel = new Label(TranslatableText.Controls.getText(), skin);
 
         SelectBox<String> moveUpSelect = new SelectBox<>(skin);
         moveUpSelect.setItems("W", "Up Arrow");
@@ -182,21 +194,30 @@ public class SettingView implements Screen {
         });
 
 
+
+
         rightTable.add(controlLabel).left();
         rightTable.row().pad(10, 0, 0, 0);
-        rightTable.add(new Label("Move Up", skin)).left();
+//        rightTable.add(new Label("Move Up", skin)).left();
+        rightTable.add(new Label(TranslatableText.MoveUp.getText(), skin)).left();
         rightTable.row();
         rightTable.add(moveUpSelect).width(250).left();
         rightTable.row().pad(10, 0, 0, 0);
-        rightTable.add(new Label("Move Down", skin)).left();
+//        rightTable.add(new Label("Move Down", skin)).left();
+        rightTable.add(new Label(TranslatableText.MoveDown.getText(), skin)).left();
+
         rightTable.row();
         rightTable.add(moveDownSelect).width(250).left();
         rightTable.row().pad(10, 0, 0, 0);
-        rightTable.add(new Label("Move Left", skin)).left();
+//        rightTable.add(new Label("Move Left", skin)).left();
+        rightTable.add(new Label(TranslatableText.MoveLeft.getText(), skin)).left();
+
         rightTable.row();
         rightTable.add(moveLeftSelect).width(250).left();
         rightTable.row().pad(10, 0, 0, 0);
-        rightTable.add(new Label("Move Right", skin)).left();
+//        rightTable.add(new Label("Move Right", skin)).left();
+        rightTable.add(new Label(TranslatableText.MoveRight.getText(), skin)).left();
+
         rightTable.row();
         rightTable.add(moveRightSelect).width(250).left();
         rightTable.row().pad(20, 0, 0, 0);
@@ -206,7 +227,8 @@ public class SettingView implements Screen {
 
 
         // Back button below both
-        TextButton backButton = new TextButton("Back", skin);
+//        TextButton backButton = new TextButton("Back", skin);
+        TextButton backButton = new TextButton(TranslatableText.BackToMainMenu.getText(), skin);
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

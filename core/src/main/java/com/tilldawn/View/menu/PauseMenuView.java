@@ -11,6 +11,7 @@ import com.tilldawn.Control.menu.TalentMenuController;
 import com.tilldawn.Control.menu.PauseMenuController;
 import com.tilldawn.Model.Ability;
 import com.tilldawn.Model.Player;
+import com.tilldawn.Model.TranslatableText;
 
 public class PauseMenuView implements Screen {
 
@@ -30,9 +31,10 @@ public class PauseMenuView implements Screen {
         this.player = player;
 
         this.table = new Table();
-        this.continueButton = new TextButton("Continue", skin);
-        this.giveUpButton = new TextButton("Give Up", skin);
-        this.cheatCodesLabel = new Label(getCheatCodes(), skin);
+        this.continueButton = new TextButton(TranslatableText.ContinueButton.getText(), skin);
+        this.giveUpButton = new TextButton(TranslatableText.GiveUpButton.getText(), skin);
+
+        this.cheatCodesLabel = new Label(TranslatableText.CheatCodeInstructions.getText(), skin);
         this.abilitiesLabel = new Label(getAcquiredAbilitiesDescription(player), skin);
 
         controller.setView(this);
@@ -54,12 +56,12 @@ public class PauseMenuView implements Screen {
         contentTable.defaults().left().pad(10).width(800);
 
         // Section: Cheat Codes
-        contentTable.add(new Label("Cheat Codes", skin, "title")).row();
+        contentTable.add(new Label(TranslatableText.CheatCodesTitle.getText(), skin, "title")).row();
         cheatCodesLabel.setWrap(true);
         contentTable.add(cheatCodesLabel).row();
 
         // Section: Achieved Abilities
-        contentTable.add(new Label("Achieved Abilities", skin, "title")).row();
+        contentTable.add(new Label(TranslatableText.AchievedAbilitiesTitle.getText(), skin, "title")).row();
         abilitiesLabel.setText(getAcquiredAbilitiesDescription(player));
         abilitiesLabel.setWrap(true);
         contentTable.add(abilitiesLabel).row();
@@ -71,7 +73,7 @@ public class PauseMenuView implements Screen {
 
         table.setFillParent(true);
         table.top().padTop(30);
-        table.add(new Label("Paused", skin, "title")).padBottom(20).row();
+        table.add(new Label(TranslatableText.PauseMenuTitle.getText(), skin, "title")).padBottom(20).row();
         table.add(scrollPane).expandY().fill().padBottom(20).row();
 
         Table buttonRow = new Table();
@@ -112,7 +114,7 @@ public class PauseMenuView implements Screen {
         for (Ability ability : player.getAcquiredAbilities()) {
             sb.append("• ").append(ability.name()).append("\n");
         }
-        return sb.length() > 0 ? sb.toString() : "No abilities acquired yet.";
+        return sb.length() > 0 ? sb.toString() : TranslatableText.NoAbilitiesMessage.getText();
     }
     public String getCheatCodes() {
         return "Cheats:\n- M key: -60 seconds\n- N key: Level up\n- H key: Increase heath\n- J key: Invite winged monster\n- K key: +10 ammos";
