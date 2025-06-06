@@ -9,9 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.TalentMenuController;
 import com.tilldawn.Control.menu.PauseMenuController;
-import com.tilldawn.Model.Ability;
-import com.tilldawn.Model.Player;
-import com.tilldawn.Model.TranslatableText;
+import com.tilldawn.Model.*;
 
 public class PauseMenuView implements Screen {
 
@@ -83,12 +81,18 @@ public class PauseMenuView implements Screen {
 
         continueButton.addListener(e -> {
             if (!continueButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.resumeGame();
             return false;
         });
 
         giveUpButton.addListener(e -> {
             if (!giveUpButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.goToGameOver();
             return false;
         });

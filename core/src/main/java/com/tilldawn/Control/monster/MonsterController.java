@@ -6,6 +6,7 @@ import com.tilldawn.Main;
 import com.tilldawn.Model.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.tilldawn.Model.monster.Monster;
+import com.tilldawn.Model.monster.Seed;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,6 +52,9 @@ public class MonsterController {
 
                 // 4. Check collision with player
                 if (m.getRect().collidesWith(player.getRect())) {
+                    if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                        GameAssetManager.getGameAssetManager().getDamageSound().play();
+                    }
                     if (currentTime - player.getLastHitTime() > player.getHitCooldown()) {
                         player.setHealth(player.getHealth() - 1);
                         player.setLastHitTime(currentTime);
@@ -67,6 +71,9 @@ public class MonsterController {
             }
 
             if (m.isDeathAnimationFinished()) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getMonsterDeathSound().play();
+                }
                 if (!m.getSeedDropped()) {
                     seeds.add(new Seed(m.getX(), m.getY()));
                     m.setSeedDropped(true);
@@ -76,6 +83,7 @@ public class MonsterController {
             }
 
             if (shouldRemove) {
+
                 it.remove(); //  safe here
             }
         }
@@ -86,6 +94,9 @@ public class MonsterController {
                 Main.getBatch().draw(seed.getSprite(), seed.getSprite().getX(), seed.getSprite().getY());
 
                 if (seed.collidesWithPlayer(player.getRect())) {
+                    if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                        GameAssetManager.getGameAssetManager().getGetCoinSound().play();
+                    }
                     seed.collect();
                     player.increaseXp(3);
                     System.out.println("Seed collected! Player health: " + player.getHealth());

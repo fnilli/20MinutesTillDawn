@@ -57,11 +57,9 @@ public class SettingController {
     }
 
     public void setSfxEnabled(boolean enabled) {
-        GameAssetManager.getGameAssetManager().setSfxEnabled(enabled);
+        App.getCurrentPlayer().setSfx(enabled);
     }
-    public void setMoveeKey(String direction, String key) {
-        // Save key setting to player preferences or memory //TODO
-    }
+
 
     public String getMoveKey(String direction) {
         Preferences prefs = Gdx.app.getPreferences("PlayerSettings");

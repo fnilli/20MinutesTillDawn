@@ -50,6 +50,9 @@ public class ScoreboardMenuView implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 Main.getMain().getScreen().dispose();
                 Main.getMain().setScreen(new MainMenuView(new MainMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
             }

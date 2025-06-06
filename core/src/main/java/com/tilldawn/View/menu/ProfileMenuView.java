@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.ProfileMenuController;
 import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 import com.tilldawn.Model.TranslatableText;
 
 public class ProfileMenuView implements Screen {
@@ -68,34 +69,54 @@ public class ProfileMenuView implements Screen {
         avatarButton3 = new ImageButton(style3);
         avatarButton4 = new ImageButton(style4);
         avatarButton5 = new ImageButton(style5);
+        avatarButton1.getImageCell().size(128, 128);
+        avatarButton2.getImageCell().size(128, 128);
+        avatarButton3.getImageCell().size(128, 128);
+        avatarButton4.getImageCell().size(128, 128);
+        avatarButton5.getImageCell().size(128, 128);
 
 // Set click listeners
         avatarButton1.addListener(event -> {
             if (!avatarButton1.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setAvatar("Idle_0.png");
             return false;
         });
 
         avatarButton2.addListener(event -> {
             if (!avatarButton2.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setAvatar("Idle_1.png");
             return false;
         });
 
         avatarButton3.addListener(event -> {
             if (!avatarButton3.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setAvatar("Idle_2.png");
             return false;
         });
 
         avatarButton4.addListener(event -> {
             if (!avatarButton4.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setAvatar("Idle_3.png");
             return false;
         });
 
         avatarButton5.addListener(event -> {
             if (!avatarButton5.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setAvatar("Idle_4.png");
             return false;
         });
@@ -118,6 +139,9 @@ public class ProfileMenuView implements Screen {
         changeUsernmeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 String newUsername = changingField.getText().trim();
                 if (newUsername.isEmpty()) {
                     messageLabel.setText(TranslatableText.EmptyUsernameWarning.getText());
@@ -130,6 +154,9 @@ public class ProfileMenuView implements Screen {
         changePasswordButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 String newPassword = changingField.getText().trim();
                 if (newPassword.isEmpty()) {
                     messageLabel.setText(TranslatableText.EmptyPasswordWarning.getText());
@@ -143,18 +170,27 @@ public class ProfileMenuView implements Screen {
         deleteAccountButton.addListener(event -> {
             if (!deleteAccountButton.isPressed()) return false;
             controller.deleteAccount();
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             return false;
         });
 
         changeAvatarButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.changeAvatar();
             }
         });
 
         backButton.addListener(event -> {
             if (!backButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.back();
             return false;
         });

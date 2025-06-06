@@ -119,6 +119,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.LevelUpController;
 import com.tilldawn.Model.Ability;
+import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 
 import java.util.List;
 
@@ -188,6 +190,9 @@ public class LevelUpView implements Screen {
             TextButton abilityButton = new TextButton(ability.name(), skin);
             abilityButton.addListener(e -> {
                 if (!abilityButton.isPressed()) return false;
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.abilityChosen(ability);
                 return false;
             });

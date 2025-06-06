@@ -23,32 +23,15 @@ public class SettingView implements Screen {
     private final SettingController controller;
 
 
-    private TextButton backButton = new TextButton(TranslatableText.BackToMainMenu.getText(), skin);
-//    private Label volumeLabel = new Label("Music Volume", skin);
-//    private Label musicLabel = new Label("Music Track", skin);
+    private final TextButton backButton = new TextButton(TranslatableText.BackToMainMenu.getText(), skin);
+
     private CheckBox autoReloadCheckBox;
     private CheckBox darkThemeCheckBox;
 
 
-    private CheckBox sfxCheckBox;
-//    private Label sfxLabel = new Label("SFX", skin);
-
-    private Label controlsLabel = new Label("Controls", skin);
-    private SelectBox<String> moveUpSelect;
-    private SelectBox<String> moveDownSelect;
-    private SelectBox<String> moveLeftSelect;
-    private SelectBox<String> moveRightSelect;
-
     private SelectBox<String> selectLanguage;
-    private Label selectLanguageLabel = new Label(TranslatableText.SelectLanguage.getText(), skin);
+    private final Label selectLanguageLabel = new Label(TranslatableText.SelectLanguage.getText(), skin);
 
-
-
-    Label volumeLabel = new Label(TranslatableText.MusicVolume.getText(), skin);
-    Label musicLabel = new Label(TranslatableText.MusicTrack.getText(), skin);
-    Label sfxLabel = new Label(TranslatableText.SoundEffects.getText(), skin);
-    Label autoReloadLabel = new Label(TranslatableText.AutoReload.getText(), skin);
-    Label darkThemeLabel = new Label(TranslatableText.DarkTheme.getText(), skin);
 
 
     public SettingView(SettingController controller) {
@@ -73,7 +56,6 @@ public class SettingView implements Screen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.top().padTop(30);
-//        mainTable.add(new Label("S e t t i n g", skin, "title")).padBottom(20).padLeft(300).row();
         mainTable.add(new Label(TranslatableText.SettingMenuTitle.getText(), skin, "title"))
             .padBottom(20).padLeft(300).row();
 
@@ -92,6 +74,9 @@ public class SettingView implements Screen {
         musicSelect.setItems("Default", "Theme1", "Theme2", "Theme3", "Theme4");
         musicSelect.setSelected("Default");
         musicSelect.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.changeMusic(musicSelect.getSelected());
             return false;
         });
@@ -100,6 +85,9 @@ public class SettingView implements Screen {
         CheckBox sfxCheckBox = new CheckBox("", skin);
         sfxCheckBox.setChecked(GameAssetManager.getGameAssetManager().isSfxEnabled());
         sfxCheckBox.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setSfxEnabled(sfxCheckBox.isChecked());
             return false;
         });
@@ -109,6 +97,9 @@ public class SettingView implements Screen {
         autoReloadCheckBox = new CheckBox("", skin);
         autoReloadCheckBox.setChecked(controller.isAutoReloadEnabled());
         autoReloadCheckBox.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setAutoReloadEnabled(autoReloadCheckBox.isChecked());
             return false;
         });
@@ -118,6 +109,9 @@ public class SettingView implements Screen {
         darkThemeCheckBox = new CheckBox("", skin);
         darkThemeCheckBox.setChecked(controller.isDarkThemeEnabled());
         darkThemeCheckBox.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setDarkThemeEnabled(darkThemeCheckBox.isChecked());
             return false;
         });
@@ -150,13 +144,15 @@ public class SettingView implements Screen {
 
         // Right table: Controls
         Table rightTable = new Table().top().right();
-//        Label controlLabel = new Label("Controls", skin);
         Label controlLabel = new Label(TranslatableText.Controls.getText(), skin);
 
         SelectBox<String> moveUpSelect = new SelectBox<>(skin);
         moveUpSelect.setItems("W", "Up Arrow");
         moveUpSelect.setSelected(controller.getMoveKey("up"));
         moveUpSelect.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setMoveKey("up", moveUpSelect.getSelected());
             return false;
         });
@@ -165,6 +161,9 @@ public class SettingView implements Screen {
         moveDownSelect.setItems("S", "Down Arrow");
         moveDownSelect.setSelected(controller.getMoveKey("down"));
         moveDownSelect.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setMoveKey("down", moveDownSelect.getSelected());
             return false;
         });
@@ -173,6 +172,9 @@ public class SettingView implements Screen {
         moveLeftSelect.setItems("A", "Left Arrow");
         moveLeftSelect.setSelected(controller.getMoveKey("left"));
         moveLeftSelect.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setMoveKey("left", moveLeftSelect.getSelected());
             return false;
         });
@@ -181,6 +183,9 @@ public class SettingView implements Screen {
         moveRightSelect.setItems("D", "Right Arrow");
         moveRightSelect.setSelected(controller.getMoveKey("right"));
         moveRightSelect.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setMoveKey("right", moveRightSelect.getSelected());
             return false;
         });
@@ -189,11 +194,12 @@ public class SettingView implements Screen {
         selectLanguage.setItems("English", "French");
         selectLanguage.setSelected("English");
         selectLanguage.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.setLanguage(selectLanguage.getSelected());
             return false;
         });
-
-
 
 
         rightTable.add(controlLabel).left();
@@ -215,7 +221,6 @@ public class SettingView implements Screen {
         rightTable.row();
         rightTable.add(moveLeftSelect).width(250).left();
         rightTable.row().pad(10, 0, 0, 0);
-//        rightTable.add(new Label("Move Right", skin)).left();
         rightTable.add(new Label(TranslatableText.MoveRight.getText(), skin)).left();
 
         rightTable.row();
@@ -226,8 +231,7 @@ public class SettingView implements Screen {
         rightTable.add(selectLanguage).width(250).left();
 
 
-        // Back button below both
-//        TextButton backButton = new TextButton("Back", skin);
+
         TextButton backButton = new TextButton(TranslatableText.BackToMainMenu.getText(), skin);
         backButton.addListener(new ChangeListener() {
             @Override
@@ -241,8 +245,7 @@ public class SettingView implements Screen {
         mainTable.add(rightTable).right().padLeft(80).top();
         mainTable.row().padTop(50);
 
-//        mainTable.add(backButton).colspan(2).center().padTop(50).width(300);
-        backButton.setPosition((float) Gdx.graphics.getWidth() /2 - 200, 20);
+        backButton.setPosition((float) Gdx.graphics.getWidth() / 2 - 200, 20);
         backButton.setWidth(300);
 
         // Add to stage
@@ -251,18 +254,32 @@ public class SettingView implements Screen {
     }
 
 
-    @Override public void render(float delta) {
+    @Override
+    public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         controller.handleSettingButtons();
     }
 
-    @Override public void resize(int width, int height) {}
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
-    @Override public void dispose() {
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
         stage.dispose();
     }
 
@@ -270,11 +287,4 @@ public class SettingView implements Screen {
         return backButton;
     }
 
-    public Label getVolumeLabel() {
-        return volumeLabel;
-    }
-
-    public Label getMusicLabel() {
-        return musicLabel;
-    }
 }

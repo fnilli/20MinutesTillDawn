@@ -19,10 +19,16 @@ public class SignUpMenuController {
 
     public void handleLoginButtons() {
         if(view.getBackButton().isPressed()){
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new StartMenuView(new StartMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
         }
         if (view.getRegisterButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             String username = view.getUsernameField().getText();
             String password = view.getPasswordField().getText();
             String securityAnswer = view.getSecurityQuestionField().getText();
@@ -44,13 +50,6 @@ public class SignUpMenuController {
 
                 User newUser = new User(username, password, securityAnswer);
                 Player newPlayer = new Player(newUser);
-
-//                heros[] allHeroes = heros.values();
-//                int index = (int)(Math.random() * allHeroes.length);
-//                System.out.println(index);
-//                heros randomHero = allHeroes[index];
-//                newPlayer.setHero(randomHero);
-//                newPlayer.setAvatarPath(randomHero.getHeroPath());
 
                 App.setCurrentUser(newUser);
                 App.setCurrentPlayer(newPlayer);

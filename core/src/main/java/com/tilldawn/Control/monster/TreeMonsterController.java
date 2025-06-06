@@ -45,6 +45,9 @@ public class TreeMonsterController {
 
                 // 4. Check collision with player
                 if (m.getRect().collidesWith(player.getRect())) {
+                    if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                        GameAssetManager.getGameAssetManager().getDamageSound().play();
+                    }
                     if (currentTime - player.getLastHitTime() > player.getHitCooldown()) {
 //                      player.setHealth(Math.max(0, player.getHealth() - 1));
                         player.setHealth(player.getHealth() - 1);

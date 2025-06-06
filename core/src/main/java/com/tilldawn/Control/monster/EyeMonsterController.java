@@ -9,6 +9,7 @@ import com.tilldawn.Model.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.tilldawn.Model.monster.EyeMonster;
 import com.tilldawn.Model.monster.MonsterBullet;
+import com.tilldawn.Model.monster.Seed;
 
 import java.util.*;
 
@@ -57,6 +58,9 @@ public void update(Player player, float delta) {
 
             // 4. Check collision with player
             if (m.getRect().collidesWith(player.getRect())) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getDamageSound().play();
+                }
                 if (currentTime - player.getLastHitTime() > player.getHitCooldown()) {
                     player.setHealth(player.getHealth() - 1);
                     player.setLastHitTime(currentTime);
@@ -86,6 +90,9 @@ public void update(Player player, float delta) {
         }
 
         if (m.isDeathAnimationFinished()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getMonsterDeathSound().play();
+            }
             if (!m.getSeedDropped()) {
                 seeds.add(new Seed(m.getX(), m.getY()));
                 m.setSeedDropped(true);
@@ -110,6 +117,9 @@ public void update(Player player, float delta) {
 
         // Bullet collision with player
         if (bullet.getRect().collidesWith(player.getRect())) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getDamageSound().play();
+            }
             player.setHealth(player.getHealth() - bullet.getDamage());
             bulletIterator.remove();
             continue;
@@ -128,6 +138,9 @@ public void update(Player player, float delta) {
             Main.getBatch().draw(seed.getSprite(), seed.getSprite().getX(), seed.getSprite().getY());
 
             if (seed.collidesWithPlayer(player.getRect())) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getGetCoinSound().play();
+                }
                 seed.collect();
                 player.increaseXp(3);
                 System.out.println("Seed collected! Player health: " + player.getHealth());

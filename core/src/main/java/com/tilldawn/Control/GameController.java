@@ -63,6 +63,7 @@ public class GameController {
             weaponController.update();
             handleCheats();
 
+
         }
     }
 
@@ -80,13 +81,13 @@ public class GameController {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
-//            player.increaseHealth();
-//            view.setMessage("Cheated Restored health");
+            player.increaseHealth();
+            view.setMessage("Cheated Restored health");
 
-            if (player.getHealth() < player.getHero().getHp()) {
-                player.increaseHealth();
-                view.setMessage("Cheated Restored health");
-            }
+//            if (player.getHealth() < player.getHero().getHp()) {
+//                player.increaseHealth();
+//                view.setMessage("Cheated Restored health");
+//            }
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {

@@ -19,6 +19,9 @@ public class LoginMenuController {
 
     public void handleLoginButtons() {
         if (view.getLoginButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             String username = view.getUsernameField().getText();
             String password = view.getPasswordField().getText();
 
@@ -37,16 +40,25 @@ public class LoginMenuController {
         }
 
         if (view.getForgotPasswordButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             view.toggleSecurityUI(true);
             view.setMessage("Answer your security question:");
         }
 
         if(view.getBackButton().isPressed()){
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new StartMenuView(new StartMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
         }
 
         if (view.isSecurityUIVisible() && view.getSubmitSecurityButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             String username = view.getUsernameField().getText();
             User user = userDatabase.getUser(username);
 
@@ -84,43 +96,6 @@ public class LoginMenuController {
         }
     }
 
-    public void handleLfoginButtons() {
-        if (view.getLoginButton().isPressed()) {
-            String username = view.getUsernameField().getText();
-            String password = view.getPasswordField().getText();
-
-            User user = userDatabase.getUser(username);
-
-            if (user == null) {
-                view.setMessage("Username Not Found.");
-            } else if (!user.getPassword().equals(password)) {
-                view.setMessage("Incorrect Password.");
-            } else {
-                Main.getMain().getScreen().dispose();
-                Main.getMain().setScreen(new MainMenuView(new MainMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
-            }
-        }
-
-        if (view.getForgotPasswordButton().isPressed()) {
-            view.toggleSecurityUI(true);
-        }
-
-        if (view.isSecurityUIVisible() && view.getSubmitSecurityButton().isPressed()) {
-            String username = view.getUsernameField().getText();
-            User user = userDatabase.getUser(username);
-
-            if (user == null) {
-                view.setMessage("Username Not Found.");
-            } else {
-                String answer = view.getSecurityAnswerField().getText();
-                if (user.getSecurityAnswer() != null && user.getSecurityAnswer().equalsIgnoreCase(answer.trim())) {
-                    view.setMessage("Correct. Your password is: " + user.getPassword());
-                } else {
-                    view.setMessage("Incorrect answer.");
-                }
-            }
-        }
-    }
 
 
     private boolean isRegistrationValid( String password) {

@@ -1,8 +1,9 @@
-package com.tilldawn.Model;
+package com.tilldawn.Model.monster;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.tilldawn.Model.CollisionRect;
 
 public class Seed {
     private Sprite sprite;

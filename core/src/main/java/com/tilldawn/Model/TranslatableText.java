@@ -135,6 +135,11 @@ public enum TranslatableText {
     }
 
     public String getText() {
-        return getText(App.getCurrentPlayer().getLanguage());
+        if (App.getCurrentPlayer() == null){
+            return getText(english);
+        }else{
+            return getText(App.getCurrentPlayer().getLanguage());
+
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.tilldawn.Main;
 import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 import com.tilldawn.Model.weapons.Bullet;
 import com.tilldawn.Model.Player;
 import com.tilldawn.Model.monster.EyeMonster;
@@ -84,29 +85,12 @@ public class WeaponController {
 
 
 
-    public void handleeWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
-        if (isReloading) return;
-
-        if (weapon.getAmmo() > 0) {
-            Vector3 mouseWorld3 = camera.unproject(new Vector3(mouseX, mouseY, 0));
-            Vector2 mouseWorld = new Vector2(mouseWorld3.x, mouseWorld3.y);
-
-            float startX = player.getPlayerSprite().getX() + weapon.getSprite().getWidth() / 2;
-            float startY = player.getPlayerSprite().getY() + weapon.getSprite().getHeight() / 2;
-
-            Vector2 direction = new Vector2(mouseWorld.x - startX, mouseWorld.y - startY).nor();
-
-            bullets.add(new Bullet(startX, startY, direction));
-            weapon.setAmmo(weapon.getAmmo() - 1);
-
-            if (weapon.getAmmo() == 0 && App.getCurrentPlayer().getAutoReload()) {
-                startReloading();
-            }
-        }
-    }
-
     public void handleWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
-        if (isReloading) return;
+        if (isReloading){
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getWeaponReloadSound().play();
+            }
+        return;}
 
         int currentAmmo = weapon.getAmmo();
 

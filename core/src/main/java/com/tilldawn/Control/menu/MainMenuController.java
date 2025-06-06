@@ -32,34 +32,55 @@ public class MainMenuController {
         if (view == null) return;
 
         if (view.getContinueButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Continue Last Game clicked");
             // Load last saved game or state here
         } else if (view.getSettingsButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Settings clicked");
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new SettingView(new SettingController()));
         }
         else if (view.getProfileButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Profile clicked");
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new ProfileMenuView(new ProfileMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
 
         } else if (view.getPreGameButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Pre-Game clicked");
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new PreGameMenuView(new PreGameMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
 
         } else if (view.getScoreboardButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Scoreboard clicked");
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new ScoreboardMenuView(GameAssetManager.getGameAssetManager().getSkin()));
 
         } else if (view.getTalentButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Talent clicked");
             Main.getMain().getScreen().dispose();
             Main.getMain().setScreen(new TalentMenuView(new TalentMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
 
         } else if (view.getLogoutButton().isPressed()) {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             System.out.println("Logout clicked");
             App.logout();
             Main.getMain().getScreen().dispose();

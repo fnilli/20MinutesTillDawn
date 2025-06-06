@@ -90,7 +90,7 @@ public class MainMenuView implements Screen {
         leftColumn.row();
         leftColumn.add(continueButton).width(320).padBottom(10);
         leftColumn.row();
-        leftColumn.add(preGameButton).width(320);
+        leftColumn.add(logoutButton).width(320);
 
 // === RIGHT SIDE: Menu Options ===
         Table rightColumn = new Table();
@@ -104,7 +104,7 @@ public class MainMenuView implements Screen {
         rightColumn.row();
         rightColumn.add(scoreboardButton).width(320).padBottom(10);
         rightColumn.row();
-        rightColumn.add(logoutButton).width(320).padBottom(10);
+        rightColumn.add(preGameButton   ).width(320).padBottom(10);
 
 // === Add Both Columns to Root Table ===
         rootTable.add(leftColumn).pad(80,0,0,300).top().left();

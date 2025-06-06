@@ -33,7 +33,7 @@ public class Player {
     private boolean sfx = true;
     private String avatarPath = "assets/Images/Sprite/Idle/Idle_0.png"; // default
 
-    private Weapons weaponType = Weapons.Shotgun;
+    private Weapons weaponType = Weapons.Smg;
     private float lastHitTime = 0f;
     private final float hitCooldown = 1.0f;
 
@@ -284,6 +284,9 @@ public class Player {
         }
     }
     private void onLevelUp() {
+        if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+            GameAssetManager.getGameAssetManager().getPowerUpSound().play();
+        }
         List<Ability> options = getRandomAbilities(3);
         // This will pause the game and let the player choose
 

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.tilldawn.Control.menu.PreGameMenuController;
 import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 import com.tilldawn.Model.Heros;
 import com.tilldawn.Model.TranslatableText;
 import com.tilldawn.Model.weapons.Weapons;
@@ -72,6 +73,9 @@ public class PreGameMenuView implements Screen {
         avatarButton1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.setAvatar("Idle_0.png"); //shana
                 App.getCurrentPlayer().setHero(Heros.Shana);
                 System.out.println(App.getCurrentPlayer().getHero().toString());
@@ -82,6 +86,9 @@ public class PreGameMenuView implements Screen {
         avatarButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.setAvatar("Idle_1.png");//diamond
                 App.getCurrentPlayer().setHero(Heros.Diamond);
                 System.out.println(App.getCurrentPlayer().getHero().toString());
@@ -94,6 +101,9 @@ public class PreGameMenuView implements Screen {
         avatarButton3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.setAvatar("Idle_2.png");//lilith
                 App.getCurrentPlayer().setHero(Heros.Lilith);
                 System.out.println(App.getCurrentPlayer().getHero().toString());
@@ -106,6 +116,9 @@ public class PreGameMenuView implements Screen {
         avatarButton4.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.setAvatar("Idle_3.png");//scarlet
                 App.getCurrentPlayer().setHero(Heros.Scarlet);
                 System.out.println(App.getCurrentPlayer().getHero().toString());
@@ -118,6 +131,9 @@ public class PreGameMenuView implements Screen {
         avatarButton5.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 controller.setAvatar("Idle_4.png");//dasher
                 App.getCurrentPlayer().setHero(Heros.Dasher);
                 System.out.println(App.getCurrentPlayer().getHero().toString());
@@ -151,6 +167,9 @@ public class PreGameMenuView implements Screen {
         weaponButton1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 App.getCurrentPlayer().setWeaponType(Weapons.Revolver);
                 setMessage(TranslatableText.WeaponSetToRevolver.getText());            }
         });
@@ -158,6 +177,9 @@ public class PreGameMenuView implements Screen {
         weaponButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 App.getCurrentPlayer().setWeaponType(Weapons.Shotgun);
                 setMessage(TranslatableText.WeaponSetToShotgun.getText());            }
         });
@@ -165,6 +187,9 @@ public class PreGameMenuView implements Screen {
         weaponButton3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
                 App.getCurrentPlayer().setWeaponType(Weapons.Smg);
                 setMessage(TranslatableText.WeaponSetToSmg.getText());            }
         });
@@ -179,6 +204,9 @@ public class PreGameMenuView implements Screen {
         this.gameTimeSelect.setSelected(TranslatableText.GameTimeOption2.getText());
 
         this.gameTimeSelect.addListener(event -> {
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.selectGameTime(this.gameTimeSelect.getSelected());
             return false;
         });
@@ -201,12 +229,18 @@ public class PreGameMenuView implements Screen {
 
         startGameButton.addListener(event -> {
             if (!startGameButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.startGame();
             return false;
         });
 
         backButton.addListener(event -> {
             if (!backButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             controller.back();
             return false;
         });

@@ -134,12 +134,6 @@ public void handlePlayerInput() {
         this.player = player;
     }
 
-    public String getMoveKey(String direction) {
-        int key = keyBindings.getOrDefault(direction, -1);
-        return key == Input.Keys.W || key == Input.Keys.S || key == Input.Keys.A || key == Input.Keys.D
-            ? Input.Keys.toString(key)
-            : getArrowKeyName(key); // handle arrow keys
-    }
 
     private String getArrowKeyName(int key) {
         switch (key) {

@@ -15,22 +15,24 @@ public class StartMenuController {
         this.view = view;
     }
 
-    public void handleStartButtons() {
-        if (view.getRegisterButton().isPressed()) {
-            Main.getMain().getScreen().dispose();
-            Main.getMain().setScreen(new SignUpMenuView(new SignUpMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
-        } else if (view.getLoginButton().isPressed()) {
-            Main.getMain().getScreen().dispose();
-            Main.getMain().setScreen(new LoginMenuView(new LoginMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
-        } else if (view.getGuestButton().isPressed()) {
-
-            User newUser = new User("guest", "guest", "guest");
-            App.setCurrentUser(newUser);
-            App.setCurrentPlayer(new Player(newUser));
-
-
-            Main.getMain().getScreen().dispose();
-            Main.getMain().setScreen(new MainMenuView(new MainMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
-        }
+    public void onRegisterClicked() {
+        Main.getMain().getScreen().dispose();
+        Main.getMain().setScreen(new SignUpMenuView(new SignUpMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
     }
+
+    public void onLoginClicked() {
+        Main.getMain().getScreen().dispose();
+        Main.getMain().setScreen(new LoginMenuView(new LoginMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+    }
+
+    public void onGuestClicked() {
+        User newUser = new User("guest", "guest", "guest");
+        App.setCurrentUser(newUser);
+        App.setCurrentPlayer(new Player(newUser));
+        Main.getMain().getScreen().dispose();
+        Main.getMain().setScreen(new MainMenuView(new MainMenuController(), GameAssetManager.getGameAssetManager().getSkin()));
+    }
+
+
+
 }

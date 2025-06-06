@@ -177,6 +177,24 @@ public class GameAssetManager {
     private final Animation<Texture> treeAnimation = new Animation<>(1f, treeTex0, treeTex1, treeTex2);
 
 
+    private final String shield0 = "Images/Sprite/HolyShield/HolyShield_0.png";
+    private final String shield1 = "Images/Sprite/HolyShield/HolyShield_1.png";
+    private final String shield2 = "Images/Sprite/HolyShield/HolyShield_2.png";
+    private final String shield3 = "Images/Sprite/HolyShield/HolyShield_3.png";
+    private final String shield4 = "Images/Sprite/HolyShield/HolyShield_4.png";
+    private final String shield5 = "Images/Sprite/HolyShield/HolyShield_5.png";
+    private final String shield6 = "Images/Sprite/HolyShield/HolyShield_6.png";
+    private final Texture shield_tex0 = new Texture(shield0);
+    private final Texture shield_tex1 = new Texture(shield1);
+    private final Texture shield_tex2 = new Texture(shield2);
+    private final Texture shield_tex3 = new Texture(shield3);
+    private final Texture shield_tex4 = new Texture(shield4);
+    private final Texture shield_tex5 = new Texture(shield5);
+    private final Texture shield_tex6 = new Texture(shield6);
+    private final Animation<Texture> shieldAnimation = new Animation<>(0.1f, shield_tex0, shield_tex1, shield_tex2, dasher3_tex, shield_tex4, shield_tex5, shield_tex6);
+
+
+
     private final String heroDamamge0 = "Images/Sprite/DeathFX/DeathFX_0.png";
     private final String heroDamamge1 = "Images/Sprite/DeathFX/DeathFX_1.png";
     private final String heroDamamge2 = "Images/Sprite/DeathFX/DeathFX_2.png";
@@ -187,16 +205,68 @@ public class GameAssetManager {
     private final Texture damage_tex3 = new Texture(heroDamamge3);
     private final Animation<Texture> heroDamageAnimation = new Animation<>(0.08f, damage_tex0, damage_tex1, damage_tex2, damage_tex3);
 
-    private final Sound wonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/You Win (2).wav"));
-    private final Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/You Lose (4).wav"));
+    private final Sound wonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/goodresult.mp3"));
+    private final Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/death-scream.mp3"));
+    private final Sound click2ButtonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/UI Click 36.wav"));
+    private final Sound clickButtonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Pop.wav"));
+    private final Sound checkBoxSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Item Lock.wav"));
+    private final Sound getCoinSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Crystal Reward Tick.wav"));
+    private final Sound monsterDeathSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Explosion_Blood_01.wav"));
+
+    private final Sound shootSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/single_shot.wav"));
+    private final Sound powerUpSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Special & Powerup (8).wav"));
+    private final Sound damageSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/sfx_sounds_impact1.wav"));
+    private final Sound switchSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Switch.wav"));
+    private final Sound weaponReloadSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Weapon_Shotgun_Reload.wav"));
+    private final Sound bloodSplashSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Blood_Splash_Quick_01.wav"));
+
+
 
 
     public Sound getLoseSound() {
         return loseSound;
     }
 
-    public Sound getWonSound() {
-        return wonSound;
+    public Sound getWonSound() {    return wonSound;}
+
+    public Sound getGetCoinSound() {return getCoinSound;}
+
+    public Sound getCheckBoxSound() {
+        return checkBoxSound;
+    }
+
+    public Sound getClick2ButtonSound() {
+        return click2ButtonSound;
+    }
+
+    public Sound getPowerUpSound() {
+        return powerUpSound;
+    }
+
+    public Sound getDamageSound() {
+        return damageSound;
+    }
+
+    public Sound getSwitchSound() {
+        return switchSound;
+    }
+
+    public Sound getWeaponReloadSound() {
+        return weaponReloadSound;
+    }
+
+    public Sound getBloodSplashSound() {
+        return bloodSplashSound;
+    }
+
+    public Sound getMonsterDeathSound() {
+        return monsterDeathSound;
+    }
+
+    public Sound getClickButtonSound() { return clickButtonSound;}
+
+    public Sound getShootSound() {
+        return shootSound;
     }
 
     public Animation<Texture> getTreeAnimation() {
@@ -213,6 +283,10 @@ public class GameAssetManager {
 
     public Animation<Texture> getEyeMonsterAnimation() {
         return eyeMonsterAnimation;
+    }
+
+    public Animation<Texture> getShieldAnimation() {
+        return shieldAnimation;
     }
 
     public Animation<Texture> getWingedMonsterAnimation() {

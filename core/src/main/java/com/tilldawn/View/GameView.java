@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldawn.Control.GameController;
 import com.tilldawn.Main;
+import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 
 public class GameView implements Screen, InputProcessor {
     private Stage stage;
@@ -184,8 +186,10 @@ public class GameView implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//        controller.getSmgWeaponController().handleWeaponShoot(screenX, screenY, camera);
         controller.getWeaponController().handleWeaponShoot(screenX, screenY, camera);
+        if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+            GameAssetManager.getGameAssetManager().getShootSound().play();
+        }
         return false;
     }
 

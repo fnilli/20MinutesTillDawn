@@ -4,14 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tilldawn.Control.menu.StartMenuController;
+import com.tilldawn.Model.App;
+import com.tilldawn.Model.GameAssetManager;
 
 public class StartMenuView implements Screen {
     private Stage stage;
@@ -56,9 +60,50 @@ public class StartMenuView implements Screen {
 
         exitButton.addListener(e -> {
             if (!exitButton.isPressed()) return false;
+            if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+            }
             Gdx.app.exit();
             return true;
         });
+
+        registerButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
+                controller.onRegisterClicked();
+            }
+        });
+
+        loginButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
+                controller.onLoginClicked();
+            }
+        });
+
+        guestButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (App.getCurrentPlayer() == null || App.getCurrentPlayer().isSfx()) {
+                    GameAssetManager.getGameAssetManager().getClickButtonSound().play();
+                }
+                controller.onGuestClicked();
+            }
+        });
+
+//        exitButton.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                Gdx.app.exit();
+//            }
+//        });
+
 
 
         table.setFillParent(true);
@@ -81,7 +126,7 @@ public class StartMenuView implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-        controller.handleStartButtons();
+//        controller.handleStartButtons();
     }
 
     @Override public void resize(int width, int height) {}
