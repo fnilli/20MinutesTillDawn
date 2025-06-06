@@ -19,10 +19,12 @@ public class LevelUpController {
     private LevelUpView view;
     private GameView gameView;
     private List<Ability> randomAbilities;
+    private Player player;
 
     public LevelUpController(GameView gameView) {
         this.gameView = gameView;
         this.randomAbilities = new ArrayList<>();
+        this.player = App.getCurrentPlayer();
     }
 
 
@@ -51,10 +53,41 @@ public class LevelUpController {
 
     public void abilityChosen(Ability ability) {
         Player player = App.getCurrentPlayer();
-        player.applyAbility(ability);
+        activateAbility(    ability);
         resumeGame();
     }
 
 
+    public void activateAbility(Ability ability) {
+        player.getAcquiredAbilities().add(ability);
+        switch (ability) {
+            case VITALITY:     // +1 max HP
+                player.increaseHealth();
+                break;
 
+            case AMOCREASE:  // +5 max ammo
+                gameView.getController().getWeaponController().increaseMaxAmmo(5);
+                break;
+
+            case PROCREASE: // +1 projectile count
+                gameView.getController().getWeaponController().increaseProjectileCount();
+                break;
+
+            case DAMAGER:     // +25% damage for 10s
+                if (!player.isDamagerActive()){
+                    gameView.getController().getWeaponController().increaseDamage();
+                    player.setDamagerTimer(10f);
+                    player.setDamagerActive(true);
+                }
+                break;
+
+            case SPEEDY:   // x2 movement speed for 10s
+                if (!player.isSpeedyActive()) {
+                    player.setSpeed(player.getSpeed() * 2);
+                    player.setSpeedyTimer( 10f);
+                    player.setSpeedyActive(true);
+                }
+                break;
+        }
+    }
 }

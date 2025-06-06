@@ -37,6 +37,10 @@ public class SettingView implements Screen {
     private SelectBox<String> moveLeftSelect;
     private SelectBox<String> moveRightSelect;
 
+    private SelectBox<String> selectLanguage;
+    private Label selectLanguageLabel = new Label("Select Language", skin);
+
+
 
     public SettingView(SettingController controller) {
         this.controller = controller;
@@ -169,6 +173,15 @@ public class SettingView implements Screen {
             return false;
         });
 
+        selectLanguage = new SelectBox<>(skin); // Use the instance field
+        selectLanguage.setItems("English", "French");
+        selectLanguage.setSelected("English");
+        selectLanguage.addListener(event -> {
+            controller.setLanguage(selectLanguage.getSelected());
+            return false;
+        });
+
+
         rightTable.add(controlLabel).left();
         rightTable.row().pad(10, 0, 0, 0);
         rightTable.add(new Label("Move Up", skin)).left();
@@ -186,6 +199,11 @@ public class SettingView implements Screen {
         rightTable.add(new Label("Move Right", skin)).left();
         rightTable.row();
         rightTable.add(moveRightSelect).width(250).left();
+        rightTable.row().pad(20, 0, 0, 0);
+        rightTable.add(selectLanguageLabel).left();
+        rightTable.row();
+        rightTable.add(selectLanguage).width(250).left();
+
 
         // Back button below both
         TextButton backButton = new TextButton("Back", skin);

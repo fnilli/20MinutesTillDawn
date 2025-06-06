@@ -8,8 +8,20 @@ import com.tilldawn.View.menu.SettingView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
+import javax.swing.*;
+
 public class SettingController {
     private SettingView view;
+
+    public void setLanguage(String language) {
+        switch (language){
+            case "English": App.getCurrentPlayer().setLanguage("English"); break;
+            case "French": App.getCurrentPlayer().setLanguage("French"); break;
+            default: App.getCurrentPlayer().setLanguage("English"); break;
+        }
+
+        System.out.println(App.getCurrentPlayer().getLanguage());
+    }
 
     public void setVolume(float value) {
         GameAssetManager.getGameAssetManager().setVolume(value);
@@ -61,6 +73,8 @@ public class SettingController {
             default: return "W";
         }
     }
+
+
 
 
     public void setMoveKey(String direction, String key) {

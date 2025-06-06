@@ -20,22 +20,27 @@ import java.util.Iterator;
 
 public class WeaponController {
 
-        private WorldController worldController; // reference to monsters
-
-        private Weapon weapon;
-        private Player player;
-        private ArrayList<Bullet> bullets = new ArrayList<>();
+    private WorldController worldController; // reference to monsters
+     private Weapon weapon;
+    private Player player;
+    private ArrayList<Bullet> bullets = new ArrayList<>();
     private boolean isReloading = false;
     private float reloadTimer = 0f;
-
+    private int projectileCount ;
+    private float weaponDamage;
+    private int maxAmmo;
 
     public WeaponController(Weapon weapon, Player player, WorldController worldController) {
             this.worldController = worldController;
             this.weapon = weapon;
             this.player = player;
             Sprite weaponSprite = weapon.getSprite();
-            weaponSprite.setOriginCenter(); // Set pivot for rotation and positioning
 
+            this.projectileCount = weapon.getType().getProjectile();
+            this.weaponDamage = (float) weapon.getType().getDamage();
+            this.maxAmmo = weapon.getType().getMaxAmmo();
+
+            weaponSprite.setOriginCenter(); // Set pivot for rotation and positioning
         }
 
 
@@ -44,7 +49,7 @@ public class WeaponController {
                 reloadTimer -= Gdx.graphics.getDeltaTime();
                 if (reloadTimer <= 0) {
                     isReloading = false;
-                    weapon.setAmmo(weapon.getType().getMaxAmmo());
+                    weapon.setAmmo(maxAmmo);
                 }
             }
             Sprite weaponSprite =  weapon.getSprite();
@@ -103,7 +108,6 @@ public class WeaponController {
     public void handleWeaponShoot(int mouseX, int mouseY, OrthographicCamera camera) {
         if (isReloading) return;
 
-        int projectileCount = weapon.getType().getProjectile();
         int currentAmmo = weapon.getAmmo();
 
         if (currentAmmo <= 0) return;
@@ -156,7 +160,7 @@ public class WeaponController {
                 // Check collision with brain monsters
                 for (Monster monster : worldController.getMonsterController().getMonsters()) {
                     if (!monster.isDead() && b.getRect().collidesWith(monster.getRect())) {
-                        monster.takeDamage(weapon.getType().getDamage());
+                        monster.takeDamage(weaponDamage);
 
                         if(monster.isDead()) player.increaseKill();
                         bulletHit = true;
@@ -168,8 +172,7 @@ public class WeaponController {
                 if (!bulletHit) {
                     for (EyeMonster monster : worldController.getEyeMonsterController().getMonsters()) {
                         if (!monster.isDead() && b.getRect().collidesWith(monster.getRect())) {
-                            monster.takeDamage(weapon.getType().getDamage());
-//                            System.out.println(weapon.getType().getDamage());
+                            monster.takeDamage(weaponDamage);
                             if(monster.isDead()) player.increaseKill();
                             bulletHit = true;
                             break;
@@ -181,8 +184,7 @@ public class WeaponController {
                 if (!bulletHit) {
                     for (WingedMonster monster : worldController.getWingedMonsterController().getMonsters()) {
                         if (!monster.isDead() && b.getRect().collidesWith(monster.getRect())) {
-                            monster.takeDamage(weapon.getType().getDamage());
-//                            System.out.println(weapon.getType().getDamage());
+                            monster.takeDamage(weaponDamage);
                             if(monster.isDead()) player.increaseKill();
                             bulletHit = true;
                             break;
@@ -204,5 +206,17 @@ public class WeaponController {
 
     public Weapon getWeapon() {
         return weapon;
+    }
+
+    public void increaseProjectileCount(){
+        projectileCount++;
+    }
+
+    public void increaseDamage(){
+        weaponDamage *= 1.25f;
+    }
+
+    public void increaseMaxAmmo(int amount){
+        maxAmmo += amount;
     }
 }

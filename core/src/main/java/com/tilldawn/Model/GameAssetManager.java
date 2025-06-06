@@ -5,7 +5,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.HashMap;
@@ -35,9 +34,6 @@ public class GameAssetManager {
     private final Texture shana7_tex = new Texture(shana7);
     private final Animation<Texture> shanaAnimation = new Animation<>(0.1f, shana0_tex, shana1_tex, shana2_tex, shana3_tex, shana4_tex, shana5_tex, shana6_tex, shana7_tex);
 
-    private final String shanaStill = "Images/Sprite/Idle/Idle_0.png";
-    private final Texture shanaStillTex = new Texture(shanaStill);
-    private final Animation<Texture> shanaStillAnimation = new Animation<>(0.1f, shanaStillTex);
 
     private final String character1_idle0 = "Images/Sprite/Walk/diamond/Walk_0 #8679.png";
     private final String character1_idle1 = "Images/Sprite/Walk/diamond/Walk_1.png";
@@ -52,10 +48,6 @@ public class GameAssetManager {
     private final Texture character1_idle4_tex = new Texture(character1_idle4);
     private final Texture character1_idle5_tex = new Texture(character1_idle5);
     private final Animation<Texture> diamondAnimation = new Animation<>(0.1f, character1_idle0_tex, character1_idle1_tex, character1_idle2_tex, character1_idle3_tex, character1_idle4_tex, character1_idle5_tex);
-
-    private final String diamondStill = "Images/Sprite/Idle/Idle_1.png";
-    private final Texture diamondStillTex = new Texture(diamondStill);
-    private final Animation<Texture> diamondStillAnimation = new Animation<>(0.1f, diamondStillTex);
 
 
     private final String scarlet0 = "Images/Sprite/Walk/scarlet/Walk_0 #8278.png";
@@ -73,10 +65,6 @@ public class GameAssetManager {
     private final Texture scarlet5_tex = new Texture(scarlet5);
     private final Texture scarlet6_tex = new Texture(scarlet6);
     private  final  Animation<Texture> scarletAnimation = new Animation<>(0.1f, scarlet0_tex, scarlet1_tex, scarlet2_tex, scarlet3_tex, scarlet4_tex, scarlet5_tex, scarlet6_tex);
-
-    private final String scarletStill = "Images/Sprite/Idle/Idle_2.png";
-    private final Texture scarletStillTex = new Texture(scarletStill);
-    private final Animation<Texture> scarletStillAnimation = new Animation<>(0.1f, scarletStillTex);
 
 
     private final String lilith0 = "Images/Sprite/Walk/lilith/Walk_0 #8279.png";
@@ -125,16 +113,11 @@ public class GameAssetManager {
     private final String shotgun = "Images/Sprite/T/T_Shotgun_SS_0.png";
     private final Texture shotgunTexture = new Texture(shotgun);
 
-    private final String bullet = "bullet.png";
     private final String mosterBullet = "Images/Sprite/EyeMonsterProjecitle/EyeMonsterProjecitle.png";
     private Music backgroundMusic;
     private float musicVolume = 3.0f; // default volume
 
     private final String defaultMusicPath = "audio/default_theme.mp3";
-    private final String music1Path = "audio/theme1.mp3";
-    private final String music2Path = "audio/theme2.mp3";
-    private final String music3Path = "audio/theme3.mp3";
-    private final String music4Path = "audio/theme4.mp3";
 
     private boolean sfxEnabled = true;
 
@@ -169,14 +152,6 @@ public class GameAssetManager {
     private final Animation<Texture> wingedMonsterAnimation = new Animation<>(0.2f, winged0tex, winged1tex, winged2tex, winged3tex, winged4tex);
 
 
-//    private final String monsterDeath_0 = "Images/Sprite/DeathFX/DeathFX_0.png";
-//    private final String monsterDeath_1 = "Images/Sprite/DeathFX/DeathFX_1.png";
-//    private final String monsterDeath_2 = "Images/Sprite/DeathFX/DeathFX_2.png";
-//    private final String monsterDeath_3 = "Images/Sprite/DeathFX/DeathFX_3.png";
-//    private final Texture monsterDeath_tex0 = new Texture(monsterDeath_0);
-//    private final Texture monsterDeath_tex1 = new Texture(monsterDeath_1);
-//    private final Texture monsterDeath_tex2 = new Texture(monsterDeath_2);
-//    private final Texture monsterDeath_tex3 = new Texture(monsterDeath_3);
     private final String monsterDeath0 = "Images/Sprite/FireballExplosion/FireballExplosion_0.png";
     private final String monsterDeath1 = "Images/Sprite/FireballExplosion/FireballExplosion_1.png";
     private final String monsterDeath2 = "Images/Sprite/FireballExplosion/FireballExplosion_2.png";
@@ -202,7 +177,15 @@ public class GameAssetManager {
     private final Animation<Texture> treeAnimation = new Animation<>(1f, treeTex0, treeTex1, treeTex2);
 
 
-
+    private final String heroDamamge0 = "Images/Sprite/DeathFX/DeathFX_0.png";
+    private final String heroDamamge1 = "Images/Sprite/DeathFX/DeathFX_1.png";
+    private final String heroDamamge2 = "Images/Sprite/DeathFX/DeathFX_2.png";
+    private final String heroDamamge3 = "Images/Sprite/DeathFX/DeathFX_3.png";
+    private final Texture damage_tex0 = new Texture(heroDamamge0);
+    private final Texture damage_tex1 = new Texture(heroDamamge1);
+    private final Texture damage_tex2 = new Texture(heroDamamge2);
+    private final Texture damage_tex3 = new Texture(heroDamamge3);
+    private final Animation<Texture> heroDamageAnimation = new Animation<>(0.08f, damage_tex0, damage_tex1, damage_tex2, damage_tex3);
 
     private final Sound wonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/You Win (2).wav"));
     private final Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/You Lose (4).wav"));
@@ -240,12 +223,6 @@ public class GameAssetManager {
         return shanaAnimation;
     }
 
-    private final Map<String, String> moveKeys = new HashMap<String, String>() {{
-        put("up", "W");
-        put("down", "S");
-        put("left", "A");
-        put("right", "D");
-    }};
 
     private GameAssetManager(){
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal(defaultMusicPath));
@@ -261,9 +238,9 @@ public class GameAssetManager {
         return gameAssetManager;
     }
 
-//    public Skin gettSkin() {
-//        return skin;
-//    }
+    public Animation<Texture> getHeroDamageAnimation() {
+        return heroDamageAnimation;
+    }
 
     public Skin getSkin() {
         if (App.getCurrentPlayer() != null && App.getCurrentPlayer().isDarkTheme() ) {
@@ -295,7 +272,7 @@ public class GameAssetManager {
     }
 
     public String getBullet(){
-        return bullet;
+        return "bullet.png";
     }
 
     public void setMusic(String path) {
@@ -334,19 +311,19 @@ public class GameAssetManager {
     }
 
     public String getMusic1Path() {
-        return music1Path;
+        return "audio/theme1.mp3";
     }
 
     public String getMusic4Path() {
-        return music4Path;
+        return "audio/theme4.mp3";
     }
 
     public String getMusic3Path() {
-        return music3Path;
+        return "audio/theme3.mp3";
     }
 
     public String getMusic2Path() {
-        return music2Path;
+        return "audio/theme2.mp3";
     }
 
     public boolean isSfxEnabled() {
@@ -356,15 +333,6 @@ public class GameAssetManager {
     public void setSfxEnabled(boolean sfxEnabled) {
         this.sfxEnabled = sfxEnabled;
     }
-
-    public void setMoveKey(String direction, String key) {
-        moveKeys.put(direction.toLowerCase(), key);
-    }
-
-    public String getMoveKey(String direction) {
-        return moveKeys.getOrDefault(direction.toLowerCase(), "W");
-    }
-
 
     public Animation<Texture> getDiamondAnimation() {
         return diamondAnimation;

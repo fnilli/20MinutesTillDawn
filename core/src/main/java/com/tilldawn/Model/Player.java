@@ -5,12 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.tilldawn.Control.LevelUpController;
-import com.tilldawn.Control.menu.PauseMenuController;
-import com.tilldawn.Control.menu.TalentMenuController;
+
 import com.tilldawn.Main;
 import com.tilldawn.Model.weapons.Weapons;
 import com.tilldawn.View.LevelUpView;
-import com.tilldawn.View.menu.PauseMenuView;
 
 import java.util.*;
 
@@ -25,7 +23,7 @@ public class Player {
     private float totalGameTime = 120;
     private float speed = hero.getSpeed();
     private int score = 0;
-    private int level = 0;
+    private int level = 1;
     private int xp = 0;
     private float stateTime = 0f; // in Player class
     private int kills = 0;
@@ -34,6 +32,7 @@ public class Player {
     private boolean darkTheme = false;
     private boolean sfx = true;
     private String avatarPath = "assets/Images/Sprite/Idle/Idle_0.png"; // default
+
     private Weapons weaponType = Weapons.Shotgun;
     private float lastHitTime = 0f;
     private final float hitCooldown = 1.0f;
@@ -42,10 +41,16 @@ public class Player {
     private Set<Ability> acquiredAbilities = new HashSet<>();
     private boolean speedyActive = false;
     private float speedyTimer = 0f;
-
+    private boolean damagerActive = false;
+    private float damagerTimer = 0f;
 
     private boolean isPlayerIdle = true;
+    private String language = "English";
 
+
+    private boolean takingDamage = false;
+    private float damageTime = 0f;
+    private final float DAMAGE_DURATION = 0.3f; // seconds
 
 
     public Player(User user){
@@ -74,6 +79,14 @@ public class Player {
 
     }
 
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
     public String getAvatarPath() {
         return avatarPath;
@@ -237,10 +250,6 @@ public class Player {
         return hero;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public void setHero(Heros hero) {
         this.hero = hero;
         this.speed = hero.getSpeed();
@@ -318,52 +327,8 @@ public class Player {
         return all.subList(0, Math.min(count, all.size()));
     }
 
-    public void applyAbility(Ability ability) {
-        switch (ability) {
-            case VITALITY:
-                increaseHealth();
-                break;
-            case DAMAGER:
-                // Handle temporary buff in gameplay logic
-                break;
-            case PROCREASE:
-                // Add logic to increase projectile count
-                break;
-            case AMOCREASE:
-                this.ammo += 5; // Or increase weapon's max ammo
-                break;
-            case SPEEDY:
-                this.speed *= 2; // Remember to revert after 10 seconds
-                break;
-        }
-    }
 
-    public void activateAbility(Ability ability) {
-        acquiredAbilities.add(ability);
-        switch (ability) {
-            case SPEEDY:
-                if (!speedyActive) {
-                    speed *= 2;
-                    speedyTimer = 10f;
-                    speedyActive = true;
-                }
-                break;
-            // Add more abilities here
-            case VITALITY:
-                Health += 1;
-                break;
-            case AMOCREASE:
-                ammo += 5; // or weapon.setMaxAmmo(weapon.getMaxAmmo() + 5)
-                break;
-            case PROCREASE:
-                // Assuming projectile count is a field in weapon
-//                weaponType.increaseProjectileCount(1); // Or whatever logic you use
-                break;
-            case DAMAGER:
-                // Similar logic — maybe set `damageBoostTimer = 10f`
-                break;
-        }
-    }
+
 
     public boolean isSpeedyActive() {
         return speedyActive;
@@ -379,6 +344,58 @@ public class Player {
         }
     }
 
+
+    public boolean isDamagerActive() {
+        return damagerActive;
+    }
+
+    public void decreaseDamagerTimer(float delta) {
+        if (!damagerActive) return;
+        damagerTimer -= delta;
+        if (damagerTimer <= 0f) {
+            damagerActive = false;
+            damagerTimer = 0f;
+        }
+    }
+
+
+
+    public void setSpeedyActive(boolean speedyActive) {
+        this.speedyActive = speedyActive;
+    }
+
+    public void setDamagerActive(boolean damagerActive) {
+        this.damagerActive = damagerActive;
+    }
+
+    public void setDamagerTimer(float damagerTimer) {
+        this.damagerTimer = damagerTimer;
+    }
+
+    public void setSpeedyTimer(float speedyTimer) {
+        this.speedyTimer = speedyTimer;
+    }
+
+    public boolean isTakingDamage() {
+        return takingDamage;
+    }
+
+    public void setTakingDamage(boolean takingDamage) {
+        this.takingDamage = takingDamage;
+        if (takingDamage) this.damageTime = 0f;
+    }
+
+    public float getDamageTime() {
+        return damageTime;
+    }
+
+    public void increaseDamageTime(float delta) {
+        this.damageTime += delta;
+        if (damageTime >= DAMAGE_DURATION) {
+            takingDamage = false;
+            damageTime = 0f;
+        }
+    }
 
 
 }

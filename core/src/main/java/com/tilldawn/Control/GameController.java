@@ -95,7 +95,8 @@ public class GameController {
         }
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
-            player.setAmmo(player.getAmmo() + 10); // Add 10 ammo
+            // Add 10 ammo
+                weaponController.getWeapon().setAmmo(weaponController.getWeapon().getAmmo() + 10);
             view.setMessage("Cheated +10 Ammo");
         }
 

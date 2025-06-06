@@ -49,6 +49,7 @@ public class TreeMonsterController {
 //                      player.setHealth(Math.max(0, player.getHealth() - 1));
                         player.setHealth(player.getHealth() - 1);
                         player.setLastHitTime(currentTime);
+                        player.setTakingDamage(true);
                         System.out.println("Player hit TreeMonster! Health: " + player.getHealth());
                     }
                 }

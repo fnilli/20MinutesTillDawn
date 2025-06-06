@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerController {
-    private Player player;
+        private Player player;
     private final Map<String, Integer> keyBindings = new HashMap<>();
     private Texture lightTexture = new Texture(Gdx.files.internal("assets/hallow3.png"));
 
@@ -28,17 +28,18 @@ public class PlayerController {
 
     public void update(float delta){
 
-        if (player.isSpeedyActive()) {
-            player.decreaseSpeedyTimer(delta);
-        }
+        if (player.isSpeedyActive()) {player.decreaseSpeedyTimer(delta);  }
+        if (player.isPlayerIdle()) { idleAnimation(); }
+        handlePlayerInput();
 
-
-        if (player.isPlayerIdle()) {
+        if (player.isTakingDamage()) {
+            playDamageAnimation(delta);
+            player.increaseDamageTime(delta);
+        } else if (player.isPlayerIdle()) {
             idleAnimation();
         }
 
 
-        handlePlayerInput();
 
         player.getPlayerSprite().setX(player.getPosX());
         player.getPlayerSprite().setY(player.getPosY());
@@ -86,11 +87,6 @@ public void handlePlayerInput() {
     }
 
 
-//    if (isMoving) {
-//        player.setCurrentAnimation(player.getRunAnimation());
-//    } else {
-//        player.setCurrentAnimation(player.getIdleAnimation());
-//    }
 
     // Update player's logical position
     player.setPosX(newX);
@@ -103,6 +99,13 @@ public void handlePlayerInput() {
 
     player.getRect().move(newX, newY);
 }
+
+
+    private void playDamageAnimation(float delta) {
+        Animation<Texture> damageAnim = GameAssetManager.getGameAssetManager().getHeroDamageAnimation();
+        Texture frame = damageAnim.getKeyFrame(player.getDamageTime(), false);
+        player.getPlayerSprite().setRegion(frame);
+    }
 
 
     public void idleAnimation(){

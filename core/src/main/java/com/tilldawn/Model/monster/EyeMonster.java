@@ -82,7 +82,7 @@ public class EyeMonster {
     }
 
 
-    public void takeDamage(int dmg) {
+    public void takeDamage(float dmg) {
         if (!dying) {
             health -= dmg;
             if (health <= 0) {

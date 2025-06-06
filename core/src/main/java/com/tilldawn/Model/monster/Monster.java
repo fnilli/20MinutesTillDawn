@@ -66,7 +66,7 @@ public class Monster {
     }
 
 
-    public void takeDamage(int dmg) {
+    public void takeDamage(float dmg) {
         if (!dying) {
             health -= dmg;
             if (health <= 0) {

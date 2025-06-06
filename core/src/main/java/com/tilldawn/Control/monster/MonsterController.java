@@ -54,6 +54,7 @@ public class MonsterController {
                     if (currentTime - player.getLastHitTime() > player.getHitCooldown()) {
                         player.setHealth(player.getHealth() - 1);
                         player.setLastHitTime(currentTime);
+                        player.setTakingDamage(true);
                         System.out.println("Player hit MONSTER! Health: " + player.getHealth());
                     }
                 }

@@ -114,9 +114,8 @@ public class PauseMenuView implements Screen {
         }
         return sb.length() > 0 ? sb.toString() : "No abilities acquired yet.";
     }
-
     public String getCheatCodes() {
-        return "Cheats:\n- M key: -60 seconds\n- C key: Level up\n- H key: Increase heath\n- T key: add 10 ammo";
+        return "Cheats:\n- M key: -60 seconds\n- N key: Level up\n- H key: Increase heath\n- J key: Invite winged monster\n- K key: +10 ammos";
     }
 
 

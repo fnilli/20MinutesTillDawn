@@ -226,4 +226,7 @@ public class GameView implements Screen, InputProcessor {
         messageTimer = 3f; // Show message for 3 seconds
     }
 
+    public GameController getController() {
+        return controller;
+    }
 }

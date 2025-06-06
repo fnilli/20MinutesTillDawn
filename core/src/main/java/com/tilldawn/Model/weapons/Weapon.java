@@ -9,7 +9,7 @@ public class Weapon {
     private Weapons type ;
     private final Texture weaponTexture ;
     private Sprite sprite ;
-    private int ammo ;
+    private int ammo;
 
     public Weapon(Weapons type) {
         this.type = type;
@@ -38,8 +38,6 @@ public class Weapon {
         return type;
     }
 
-    public Texture getWeaponTexture() {
-        return weaponTexture;
-    }
+
 }
 
