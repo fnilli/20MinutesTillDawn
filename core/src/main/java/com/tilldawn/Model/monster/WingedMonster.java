@@ -7,7 +7,7 @@ import com.tilldawn.Model.GameAssetManager;
 
 public class WingedMonster {
     private float x, y;
-    private int health = 400 ;
+    private int health = 300 ;
     private Animation<Texture> animation;
     private float stateTime = 0f;
     private CollisionRect rect;

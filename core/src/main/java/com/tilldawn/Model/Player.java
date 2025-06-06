@@ -171,14 +171,14 @@ public class Player {
         playerSprite.setY(posY);
     }
 
-    public float getStateTime() {
-        return stateTime;
+
+    public float getCenterX() {
+        return playerSprite.getX() + playerSprite.getWidth() / 2f;
     }
 
-    public void setStateTime(float stateTime) {
-        this.stateTime = stateTime;
+    public float getCenterY() {
+        return playerSprite.getY() + playerSprite.getHeight() / 2f;
     }
-
 
 
     public float getHealth() {

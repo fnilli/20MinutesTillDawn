@@ -194,6 +194,9 @@ public class GameAssetManager {
     private final Animation<Texture> shieldAnimation = new Animation<>(0.1f, shield_tex0, shield_tex1, shield_tex2, dasher3_tex, shield_tex4, shield_tex5, shield_tex6);
 
 
+    public Texture getShieldTexture(){
+        return new Texture("Images/Sprite/PowerupFrame/PowerupFrame.png");
+    }
 
     private final String heroDamamge0 = "Images/Sprite/DeathFX/DeathFX_0.png";
     private final String heroDamamge1 = "Images/Sprite/DeathFX/DeathFX_1.png";
