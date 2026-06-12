@@ -210,14 +210,20 @@ public class GameAssetManager {
 
     private final Sound wonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/goodresult.mp3"));
     private final Sound loseSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/death-scream.mp3"));
+    private final Sound click2ButtonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/UI Click 36.wav"));
     private final Sound clickButtonSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Pop.wav"));
+    private final Sound checkBoxSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Item Lock.wav"));
     private final Sound getCoinSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Crystal Reward Tick.wav"));
     private final Sound monsterDeathSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Explosion_Blood_01.wav"));
 
     private final Sound shootSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/single_shot.wav"));
     private final Sound powerUpSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Special & Powerup (8).wav"));
     private final Sound damageSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/sfx_sounds_impact1.wav"));
+    private final Sound switchSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Switch.wav"));
     private final Sound weaponReloadSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Weapon_Shotgun_Reload.wav"));
+    private final Sound bloodSplashSound = Gdx.audio.newSound(Gdx.files.internal("SFX/AudioClip/Blood_Splash_Quick_01.wav"));
+
+
 
 
     public Sound getLoseSound() {
@@ -228,6 +234,14 @@ public class GameAssetManager {
 
     public Sound getGetCoinSound() {return getCoinSound;}
 
+    public Sound getCheckBoxSound() {
+        return checkBoxSound;
+    }
+
+    public Sound getClick2ButtonSound() {
+        return click2ButtonSound;
+    }
+
     public Sound getPowerUpSound() {
         return powerUpSound;
     }
@@ -236,8 +250,16 @@ public class GameAssetManager {
         return damageSound;
     }
 
+    public Sound getSwitchSound() {
+        return switchSound;
+    }
+
     public Sound getWeaponReloadSound() {
         return weaponReloadSound;
+    }
+
+    public Sound getBloodSplashSound() {
+        return bloodSplashSound;
     }
 
     public Sound getMonsterDeathSound() {

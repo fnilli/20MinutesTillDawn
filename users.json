@@ -170,9 +170,6 @@
 	username: AmirHossein
 	password: AHnil1389!
 	securityAnswer: Blue
-	score: 19592
-	kills: 124
-	mostSurvivedTime: 158
 }
 {
 	class: com.tilldawn.Model.User
@@ -188,14 +185,5 @@
 	score: 2870
 	kills: 10
 	mostSurvivedTime: 287
-}
-{
-	class: com.tilldawn.Model.User
-	username: saeed
-	password: Omid123()
-	securityAnswer: blue
-	score: 372
-	kills: 4
-	mostSurvivedTime: 93
 }
 ]
