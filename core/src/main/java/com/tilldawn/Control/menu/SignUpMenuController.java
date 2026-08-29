@@ -46,7 +46,7 @@ public class SignUpMenuController {
             // Save user with security answer
             if (userDatabase.register(username, password, securityAnswer)) {
                 view.setMessage("User registered successfully!");
-                Gdx.app.log("Register", "Saved at: " + Gdx.files.local("users.json").file().getAbsolutePath());
+                Gdx.app.log("Register", "Saved at: " + Gdx.files.local("data/users.json").file().getAbsolutePath());
 
                 User newUser = new User(username, password, securityAnswer);
                 Player newPlayer = new Player(newUser);

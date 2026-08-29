@@ -31,7 +31,7 @@ public class Player {
     private boolean autoReload = true;
     private boolean darkTheme = false;
     private boolean sfx = true;
-    private String avatarPath = "assets/Images/Sprite/Idle/Idle_0.png"; // default
+    private String avatarPath = "Images/Sprite/Idle/Idle_0.png"; // default
 
     private Weapons weaponType = Weapons.Smg;
     private float lastHitTime = 0f;

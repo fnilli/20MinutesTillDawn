@@ -3,11 +3,11 @@ package com.tilldawn.Model.weapons;
 import com.tilldawn.Model.GameAssetManager;
 
 public enum Weapons {
-    Revolver(20, 1 , 1f, 6, "assets/Images/Sprite/RevolverStill/RevolverStill.png",
+    Revolver(20, 1 , 1f, 6, "Images/Sprite/RevolverStill/RevolverStill.png",
         GameAssetManager.getGameAssetManager().getRevolver()),
-    Shotgun(10, 4, 1f, 2, "assets/Images/Sprite/T/T_Shotgun_SS_0.png",
+    Shotgun(10, 4, 1f, 2, "Images/Sprite/T/T_Shotgun_SS_0.png",
         GameAssetManager.getGameAssetManager().getShotgun()),
-    Smg(8, 1, 2, 24, "assets/Images/Sprite/SMGStill/SMGStill.png",
+    Smg(8, 1, 2, 24, "Images/Sprite/SMGStill/SMGStill.png",
         GameAssetManager.getGameAssetManager().getSmg()),;
 
 

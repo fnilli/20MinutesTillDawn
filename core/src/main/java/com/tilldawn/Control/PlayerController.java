@@ -15,7 +15,7 @@ import java.util.Map;
 public class PlayerController {
         private Player player;
     private final Map<String, Integer> keyBindings = new HashMap<>();
-    private Texture lightTexture = new Texture(Gdx.files.internal("assets/hallow3.png"));
+    private Texture lightTexture = new Texture(Gdx.files.internal("hallow3.png"));
 
     public PlayerController(Player player){
         this.player = player;

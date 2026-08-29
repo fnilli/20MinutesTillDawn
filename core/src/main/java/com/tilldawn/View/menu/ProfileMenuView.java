@@ -49,19 +49,19 @@ public class ProfileMenuView implements Screen {
 
         // Load image button styles
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
-        style1.imageUp = new Image(new Texture("assets/Images/Sprite/Idle/Idle_0.png")).getDrawable();
+        style1.imageUp = new Image(new Texture("Images/Sprite/Idle/Idle_0.png")).getDrawable();
 
         ImageButton.ImageButtonStyle style2 = new ImageButton.ImageButtonStyle();
-        style2.imageUp = new Image(new Texture("assets/Images/Sprite/Idle/Idle_1.png")).getDrawable();
+        style2.imageUp = new Image(new Texture("Images/Sprite/Idle/Idle_1.png")).getDrawable();
 
         ImageButton.ImageButtonStyle style3 = new ImageButton.ImageButtonStyle();
-        style3.imageUp = new Image(new Texture("assets/Images/Sprite/Idle/Idle_2.png")).getDrawable();
+        style3.imageUp = new Image(new Texture("Images/Sprite/Idle/Idle_2.png")).getDrawable();
 
         ImageButton.ImageButtonStyle style4 = new ImageButton.ImageButtonStyle();
-        style4.imageUp = new Image(new Texture("assets/Images/Sprite/Idle/Idle_3.png")).getDrawable();
+        style4.imageUp = new Image(new Texture("Images/Sprite/Idle/Idle_3.png")).getDrawable();
 
         ImageButton.ImageButtonStyle style5 = new ImageButton.ImageButtonStyle();
-        style4.imageUp = new Image(new Texture("assets/Images/Sprite/Idle/Idle_4.png")).getDrawable();
+        style4.imageUp = new Image(new Texture("Images/Sprite/Idle/Idle_4.png")).getDrawable();
 
 // Create buttons
         avatarButton1 = new ImageButton(style1);

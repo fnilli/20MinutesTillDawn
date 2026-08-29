@@ -143,7 +143,7 @@ public class ProfileMenuController {
             case "Idle_4.png": player.setHero(Heros.Dasher); break;
         }
 
-        player.setAvatarPath("assets/Images/Sprite/Idle/" + fileName);
+        player.setAvatarPath("Images/Sprite/Idle/" + fileName);
         userDatabase.save();
         view.setMessage("Avatar set to " + fileName);
     }

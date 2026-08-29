@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserDatabase {
-    private static final String FILE_PATH = "users.json";
+    private static final String FILE_PATH = "data/users.json";
     private ArrayList<User> users;
     private final Json json = new Json();
 

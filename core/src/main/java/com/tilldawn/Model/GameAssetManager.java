@@ -12,8 +12,8 @@ import java.util.Map;
 
 public class GameAssetManager {
     private static GameAssetManager gameAssetManager;
-    private final Skin skin = new Skin(Gdx.files.internal("assets/skin/pixthulhu-ui.json"));
-    private final Skin darkSkin = new Skin(Gdx.files.internal("assets/skin/pixthulhu-ui-dark.json"));
+    private final Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+    private final Skin darkSkin = new Skin(Gdx.files.internal("skin/pixthulhu-ui-dark.json"));
 
 
     private final String shana0 = "Images/Sprite/Walk/shana/Walk_1 #8630.png";
