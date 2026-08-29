@@ -1,54 +1,104 @@
-# 20 Minutes Till Dawn - AP Project
+# 👾 20 Minutes Till Dawn
 
-> A 2D top-down survival shooter cloned from **20 Minutes Till Dawn** using the **libGDX** framework in **Java**.
-> 
-> Developed as the graphics assignment for the "Advanced Programming" course at Sharif University of Technology.
+> A **2D top-down survival shooter** inspired by *20 Minutes Till Dawn*, developed in **Java** using the **libGDX** framework.
+>
+> Developed as a graphics assignment for the **Advanced Programming** course at **Sharif University of Technology**.
 
-## Overview
-This project is a fast-paced, 360-degree action roguelite game where the player must survive against endless waves of enemies for a specified duration (2, 5, 10, or 20 minutes). Built upon the MVC architecture, it features a complete user authentication system, dynamic combat mechanics, and a character progression system driven by experience points dropped by defeated monsters.
+## 🎮 Overview
 
-## Key Features
-* **Account & Menu System:** Registration, login, profile management (avatars, passwords), settings (audio, keybinds), and a sortable Scoreboard.
-* **Dynamic Combat:** WASD movement, mouse-aimed shooting, active reloading, and an optional auto-aim system.
-* **RPG Progression:** Collect XP seeds to level up and draft randomized abilities (e.g., Vitality, Damager, Speedy, Procrease) during gameplay.
-* **Entity Variety:** Choose from 5 heroes (Shana, Diamond, Scarlet, Lilith, Dasher) and fight distinct enemies (Tentacle Monsters, Eyebats, and an Elder Boss with a shrinking arena shield).
-* **Arsenal:** Equip different weapons like Revolvers, Shotguns, and Dual SMGs, each with unique ammo capacities, reload times, and damage outputs.
-* **Persistence:** Complete JSON-based serialization to save and resume game progress.
-* **Visual Polish:** Custom HUD, damage/death animations, localized dynamic lighting around the player, and projectile tracking.
+This project is a fast-paced, pixel-art action roguelite where the player must survive against endless waves of enemies for a selected duration of **2, 5, 10, or 20 minutes**.
 
-## Build and Run
+Players can choose from different characters and weapons, fight enemies using **360-degree shooting**, collect experience dropped by defeated monsters, and level up by acquiring new abilities and upgrades. As the game progresses, enemies become increasingly challenging, requiring players to build effective combinations of weapons, abilities, and character attributes to survive.
+
+The project also includes a complete user system, customizable settings, score tracking, and game progress persistence.
+
+## ✨ Features
+
+* Multiple playable characters with different attributes
+* Multiple weapons with unique damage, ammo, and reload mechanics
+* Mouse-aimed 360-degree shooting
+* Enemy waves with increasing difficulty
+* Different enemy types and boss encounters
+* XP, leveling, and randomized ability upgrades
+* Health, damage, and survival mechanics
+* Save and resume game progress
+* User accounts, profiles, and scoreboards
+* Customizable controls and game settings
+* HUD, animations, and visual effects
+
+## 🛠️ Technologies
+
+* **Java**
+* **libGDX**
+* **LWJGL3**
+* **Gradle**
+
+## 📁 Project Structure
+
+```text id="h3n92q"
+
+20MinTillDawn2/
+├── assets/              # Game assets
+├── build/               # Build output
+├── core/                # Core game logic
+├── data/                # Persistent game and user data
+├── docs/                # Project documentation
+├── gradle/              # Gradle wrapper files
+├── lwjgl3/              # Desktop launcher
+│
+├── build.gradle         # Gradle build configuration
+├── gradle.properties    # Gradle properties
+├── gradlew              # Gradle wrapper
+├── gradlew.bat          # Windows Gradle wrapper
+├── settings.gradle      # Project settings
+└── README.md
+```
+## 🚀 Build and Run
 
 ### Prerequisites
-Ensure you have the following installed on your system:
-* Java Development Kit (JDK) 17 (e.g., `sudo apt install openjdk-17-jdk`)
 
-*Note: If Gradle fails due to BellSoft Liberica toolchain issues, add `org.gradle.java.installations.auto-download=false` to your `gradle.properties` and remove the `toolchain` vendor specification from the root `build.gradle`.*
+- **JDK 17**
 
-### Execution
-Navigate to the root directory to compile and run the game via the Gradle wrapper:
+The project is configured to work with Java 17 without requiring a specific JDK vendor. OpenJDK, Eclipse Temurin, Amazon Corretto, BellSoft Liberica, and other Java 17 distributions should work.
 
+### Run on Linux/macOS
 
+From the project root:
+
+```bash
 chmod +x gradlew
 ./gradlew lwjgl3:run
-## Gradle
+```
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+### Run on Windows
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application via the Gradle CLI.
-- `test`: runs unit tests (if any).
+```bat
+gradlew.bat lwjgl3:run
+```
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+
+### Run from an IDE
+
+You can also run the desktop launcher directly from:
+
+```text id="ps2yrd"
+lwjgl3/src/main/java/com/tilldawn/lwjgl3/Lwjgl3Launcher.java
+```
+
+Run the `Lwjgl3Launcher` class using IntelliJ IDEA or another Java IDE.
+
+## 📚 Documentation
+
+The original assignment specification is available in:
+
+```text id="y8plun"
+docs/HW3.pdf
+```
+
+## 🎓 Credits
+
+**Sharif University of Technology**
+Department of Computer Engineering
+
+**Course:** Advanced Programming
+**Academic Year:** 2024–2025
