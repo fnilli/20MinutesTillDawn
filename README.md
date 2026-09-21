@@ -87,7 +87,7 @@ lwjgl3/src/main/java/com/tilldawn/lwjgl3/Lwjgl3Launcher.java
 
 Run the `Lwjgl3Launcher` class using IntelliJ IDEA or another Java IDE.
 
-## 📚 Documentation
+## Documentation
 
 The original assignment specification is available in:
 
@@ -95,7 +95,7 @@ The original assignment specification is available in:
 docs/HW3.pdf
 ```
 
-## 🎓 Credits
+## Credits
 
 **Sharif University of Technology**
 Department of Computer Engineering
